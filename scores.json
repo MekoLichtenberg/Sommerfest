@@ -1,10 +1,13 @@
 {
   "title": "Sommerfest 2025",
   "subtitle": "Wettrennen Scoreboard",
-  "updated": "",
+  "updated": "16.6.2026, 00:37:50",
   "teams": [
-    { "name": "Team Feuerdrachen", "emoji": "🐉", "points": 0 },
-    { "name": "Team Sturmwölfe",   "emoji": "🐺", "points": 0 },
-    { "name": "Team Goldadler",    "emoji": "🦅", "points": 0 }
+    {
+      "id": "t_gpvykvn",
+      "name": "Team Goldadler",
+      "emoji": "🦅",
+      "points": 6
+    }
   ]
 }
