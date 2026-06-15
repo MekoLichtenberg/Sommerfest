@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scoreboard Organisator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f6f3; --card: #fff; --border: #e2e0db; --text: #1a1916;
+    --muted: #888580; --accent: #2563eb; --accent-hover: #1d4ed8;
+    --danger: #dc2626; --success: #16a34a; --input-bg: #fafaf8;
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; padding: 2rem 1rem 4rem; }
+  .container { max-width: 640px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .page-sub { font-size: 14px; color: var(--muted); margin-bottom: 2rem; }
+
+  .login-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem 2rem; max-width: 360px; margin: 4rem auto 0; text-align: center; }
+  .login-card .lock { font-size: 36px; margin-bottom: 1rem; }
+  .login-card h1 { margin-bottom: 6px; }
+  .login-card p { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; }
+  .login-card input { text-align: center; letter-spacing: 0.15em; }
+  .login-err { color: var(--danger); font-size: 12px; height: 16px; margin: 10px 0; }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.25rem; }
+  .card h2 { font-size: 13px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+
+  label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 5px; margin-top: 12px; }
+  label:first-of-type { margin-top: 0; }
+  input[type=text], input[type=password] { width: 100%; background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-family: inherit; font-size: 15px; color: var(--text); outline: none; transition: border-color 0.15s; }
+  input:focus { border-color: var(--accent); }
+  input.shake { animation: shake 0.4s; border-color: var(--danger); }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-7px)} 40%{transform:translateX(7px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+
+  .btn { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 10px 18px; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.15s; }
+  .btn:hover { background: var(--accent-hover); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-sm { padding: 6px 12px; font-size: 13px; }
+  .btn-success { background: var(--success); }
+  .btn-success:hover { background: #15803d; }
+  .btn-grey { background: #6b7280; }
+  .btn-grey:hover { background: #4b5563; }
+
+  #teams-list { display: flex; flex-direction: column; gap: 10px; }
+  .team-row { display: grid; grid-template-columns: 56px 1fr 92px auto; gap: 8px; align-items: center; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+  .team-row input { margin-top: 0; }
+  .pts-controls { display: flex; align-items: center; gap: 4px; }
+  .pts-btn { width: 26px; height: 28px; border-radius: 6px; border: 1px solid var(--border); background: var(--card); font-size: 16px; cursor: pointer; flex-shrink: 0; color: var(--text); }
+  .pts-btn:hover { background: var(--border); }
+  .pts-input { width: 52px !important; text-align: center; padding: 5px 4px !important; }
+  .delete-btn { background: none; border: none; color: #ccc; cursor: pointer; font-size: 18px; padding: 4px; line-height: 1; }
+  .delete-btn:hover { color: var(--danger); }
+
+  .status-bar { border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-bottom: 1rem; display: none; }
+  .status-bar.success { background: #dcfce7; color: #166534; }
+  .status-bar.error { background: #fee2e2; color: #991b1b; }
+  .status-bar.info { background: #dbeafe; color: #1e40af; }
+
+  .title-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .row-actions { display: flex; gap: 8px; margin-top: 1rem; flex-wrap: wrap; }
+  .logout-link { font-size: 12px; color: var(--muted); cursor: pointer; text-decoration: underline; float: right; margin-top: 6px; }
+  .logout-link:hover { color: var(--danger); }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- ─── Worker-URL eintragen ─── -->
+<script>const WORKER_URL = "https://sommerfest-scoreboard.cass70624.workers.dev/";</script>
+<!-- ──────────────────────────── -->
+
+<!-- Login -->
+<div class="login-card" id="login-card">
+  <div class="lock">🔧</div>
+  <h1>Organisator</h1>
+  <p>Volle Kontrolle über das Scoreboard</p>
+  <input type="password" id="pw" placeholder="Passwort" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
+  <div class="login-err" id="login-err"></div>
+  <button class="btn" style="width:100%; justify-content:center;" onclick="doLogin()" id="login-btn">Einloggen</button>
+</div>
+
+<!-- Admin UI -->
+<div id="admin-ui" class="hidden">
+<div class="container">
+  <h1>🔧 Organisator <span class="logout-link" onclick="logout()">Ausloggen</span></h1>
+  <p class="page-sub">Titel anpassen, Teams korrigieren oder löschen, Punkte setzen.</p>
+
+  <div id="status" class="status-bar"></div>
+
+  <div class="card">
+    <h2>Event-Titel</h2>
+    <div class="title-row">
+      <div><label>Titel</label><input type="text" id="ev-title" placeholder="Sommerfest 2025"></div>
+      <div><label>Untertitel</label><input type="text" id="ev-subtitle" placeholder="Wettrennen Scoreboard"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Teams</h2>
+    <div id="teams-list"></div>
+    <div style="margin-top:10px;"><button class="btn btn-sm" onclick="addTeam()">+ Team hinzufügen</button></div>
+  </div>
+
+  <div class="row-actions">
+    <button class="btn btn-success" id="save-btn" onclick="save()">💾 Speichern &amp; veröffentlichen</button>
+    <button class="btn btn-sm btn-grey" onclick="loadData()">↓ Neu laden</button>
+  </div>
+</div>
+</div>
+
+<script>
+let teams = [];
+let sessionPw = '';
+
+async function doLogin() {
+  const pw = document.getElementById('pw').value;
+  const btn = document.getElementById('login-btn'); btn.disabled = true;
+  try {
+    const res = await fetch(WORKER_URL + '/api/login', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ role: 'admin', password: pw })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      sessionPw = pw;
+      document.getElementById('login-card').classList.add('hidden');
+      document.getElementById('admin-ui').classList.remove('hidden');
+      loadData();
+    } else {
+      const inp = document.getElementById('pw');
+      inp.classList.remove('shake'); void inp.offsetWidth; inp.classList.add('shake'); inp.value = '';
+      document.getElementById('login-err').textContent = 'Falsches Passwort.';
+    }
+  } catch (e) { document.getElementById('login-err').textContent = 'Verbindungsfehler.'; }
+  btn.disabled = false;
+}
+
+function logout() { sessionPw = ''; location.reload(); }
+
+function showStatus(msg, type='info') {
+  const el = document.getElementById('status');
+  el.textContent = msg; el.className = 'status-bar ' + type; el.style.display = 'block';
+  if (type === 'success') setTimeout(() => el.style.display = 'none', 4000);
+}
+
+function renderTeams() {
+  const list = document.getElementById('teams-list');
+  list.innerHTML = '';
+  teams.forEach((t, i) => {
+    const row = document.createElement('div');
+    row.className = 'team-row';
+    row.innerHTML = `
+      <input type="text" value="${escAttr(t.emoji)}" oninput="teams[${i}].emoji=this.value" style="text-align:center; font-size:20px; padding:6px;">
+      <input type="text" value="${escAttr(t.name)}" placeholder="Teamname" oninput="teams[${i}].name=this.value">
+      <div class="pts-controls">
+        <button class="pts-btn" onclick="adjust(${i},-1)">−</button>
+        <input type="text" class="pts-input" value="${t.points}" oninput="setPts(${i},this.value)">
+        <button class="pts-btn" onclick="adjust(${i},1)">+</button>
+      </div>
+      <button class="delete-btn" onclick="removeTeam(${i})" title="Löschen">✕</button>`;
+    list.appendChild(row);
+  });
+}
+
+function adjust(i,d){ teams[i].points = Math.max(0,(teams[i].points||0)+d); renderTeams(); }
+function setPts(i,v){ const n=parseInt(v,10); teams[i].points = isNaN(n)?0:Math.max(0,n); }
+function addTeam(){ teams.push({name:'Neues Team',emoji:'⭐',points:0}); renderTeams(); }
+function removeTeam(i){ teams.splice(i,1); renderTeams(); }
+function escAttr(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+
+async function loadData() {
+  showStatus('Lade...', 'info');
+  try {
+    const res = await fetch(WORKER_URL + '/api/scores');
+    const data = await res.json();
+    document.getElementById('ev-title').value = data.title || '';
+    document.getElementById('ev-subtitle').value = data.subtitle || '';
+    teams = data.teams || [];
+    renderTeams();
+    showStatus('Geladen.', 'success');
+  } catch (e) { showStatus('Fehler beim Laden.', 'error'); }
+}
+
+async function save() {
+  const btn = document.getElementById('save-btn'); btn.disabled = true;
+  showStatus('Wird gespeichert...', 'info');
+  try {
+    const res = await fetch(WORKER_URL + '/api/admin', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        password: sessionPw,
+        title: document.getElementById('ev-title').value.trim(),
+        subtitle: document.getElementById('ev-subtitle').value.trim(),
+        teams: teams
+      })
+    });
+    const data = await res.json();
+    if (data.ok) { teams = data.data.teams; renderTeams(); showStatus('Gespeichert!', 'success'); }
+    else showStatus(data.error || 'Fehler.', 'error');
+  } catch (e) { showStatus('Verbindungsfehler.', 'error'); }
+  btn.disabled = false;
+}
+</script>
+</body>
+</html>

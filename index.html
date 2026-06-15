@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scoreboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold:   #F5C842;
+    --silver: #C0C8D8;
+    --bronze: #D4845A;
+    --bg:     #09090f;
+    --card:   #111118;
+    --border: rgba(255,255,255,0.07);
+    --text:   #F0EEF8;
+    --muted:  rgba(240,238,248,0.45);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1rem 4rem;
+    overflow-x: hidden;
+  }
+
+  /* starfield */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 42% 8%,  rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 67% 55%, rgba(255,255,255,0.35) 0%, transparent 100%),
+      radial-gradient(1px 1px at 83% 18%, rgba(255,255,255,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 72%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 28% 88%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5%  60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 95%, rgba(255,255,255,0.25) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .event-label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    line-height: 0.92;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  h1 span {
+    color: var(--gold);
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* decorative line */
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 1.2rem auto;
+  }
+
+  #board {
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .row {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .row.visible {
+    animation: slideIn 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+
+  .row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+
+  .row.rank-1 { border-color: rgba(245,200,66,0.35); }
+  .row.rank-2 { border-color: rgba(192,200,216,0.25); }
+  .row.rank-3 { border-color: rgba(212,132,90,0.25); }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .row-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+
+  .rank-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    flex-shrink: 0;
+    border: 1px solid transparent;
+  }
+
+  .rank-badge.r1 { background: rgba(245,200,66,0.12); border-color: rgba(245,200,66,0.5); color: var(--gold); }
+  .rank-badge.r2 { background: rgba(192,200,216,0.08); border-color: rgba(192,200,216,0.35); color: var(--silver); }
+  .rank-badge.r3 { background: rgba(212,132,90,0.1); border-color: rgba(212,132,90,0.4); color: var(--bronze); }
+  .rank-badge.rn { background: rgba(255,255,255,0.04); border-color: var(--border); color: var(--muted); }
+
+  .emoji-icon {
+    font-size: 26px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .team-name {
+    flex: 1;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .points-display {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .points-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: 0.03em;
+  }
+
+  .points-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .rank-1 .points-num { color: var(--gold); }
+  .rank-2 .points-num { color: var(--silver); }
+  .rank-3 .points-num { color: var(--bronze); }
+  .row:not(.rank-1):not(.rank-2):not(.rank-3) .points-num { color: var(--text); }
+
+  .bar-track {
+    background: rgba(255,255,255,0.06);
+    border-radius: 4px;
+    height: 5px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 1.2s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .bar-fill.animate { transform: scaleX(1); }
+
+  .rank-1 .bar-fill { background: linear-gradient(to right, #D4A012, var(--gold)); }
+  .rank-2 .bar-fill { background: linear-gradient(to right, #8A96B0, var(--silver)); }
+  .rank-3 .bar-fill { background: linear-gradient(to right, #A05A32, var(--bronze)); }
+  .row:not(.rank-1):not(.rank-2):not(.rank-3) .bar-fill { background: rgba(255,255,255,0.3); }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--muted);
+    font-size: 15px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .update-time {
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2rem;
+    letter-spacing: 0.06em;
+    position: relative;
+    z-index: 1;
+  }
+
+  #refresh-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 8px;
+    padding: 6px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 1rem;
+    letter-spacing: 0.06em;
+    transition: border-color 0.2s, color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+
+  #refresh-btn:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="event-label" id="event-label">Sommerfest 2025</div>
+  <h1>Score<span>board</span></h1>
+  <div class="divider"></div>
+  <div class="subtitle" id="header-subtitle">Wettrennen Scoreboard</div>
+</header>
+
+<div id="board"></div>
+<div class="empty-state" id="empty" style="display:none;">Noch keine Teams eingetragen.</div>
+<div class="update-time" id="update-time"></div>
+<button id="refresh-btn" onclick="loadScores()">↻ Aktualisieren</button>
+
+<script>
+/* ─── Worker-URL eintragen (für Live-Daten). 
+       Leer lassen, um stattdessen direkt scores.json zu lesen. ─── */
+const WORKER_URL = "https://sommerfest-scoreboard.cass70624.workers.dev/";
+const SCORES_URL = WORKER_URL ? WORKER_URL + '/api/scores' : 'scores.json';
+const COLORS = [
+  '#F5C842','#7EB8F7','#7EE8A2','#F48C6B','#C47EF7',
+  '#F77EBF','#7ECFF7','#EAF77E','#F7B07E','#7EF7D8'
+];
+const rankClass = ['rank-1','rank-2','rank-3'];
+const rankBadge = ['r1','r2','r3'];
+
+async function loadScores() {
+  try {
+    const sep = SCORES_URL.includes('?') ? '&' : '?';
+    const res = await fetch(SCORES_URL + sep + 't=' + Date.now());
+    const data = await res.json();
+
+    document.getElementById('event-label').textContent = data.title || 'Sommerfest';
+    document.getElementById('header-subtitle').textContent = data.subtitle || '';
+
+    const teams = [...(data.teams || [])].sort((a,b) => b.points - a.points);
+    const maxPts = teams.length ? Math.max(...teams.map(t => t.points), 1) : 1;
+
+    const board = document.getElementById('board');
+    board.innerHTML = '';
+
+    if (!teams.length) {
+      document.getElementById('empty').style.display = 'block';
+      return;
+    }
+    document.getElementById('empty').style.display = 'none';
+
+    teams.forEach((team, i) => {
+      const rClass = rankClass[i] || '';
+      const bClass = rankBadge[i] || 'rn';
+      const pct = maxPts > 0 ? team.points / maxPts : 0;
+      const barColor = COLORS[i % COLORS.length];
+      const rankNum = i === 0 ? '★' : (i + 1);
+
+      const row = document.createElement('div');
+      row.className = 'row ' + rClass;
+      row.style.animationDelay = (i * 0.07) + 's';
+
+      row.innerHTML = `
+        <div class="row-top">
+          <div class="rank-badge ${bClass}">${rankNum}</div>
+          <div class="emoji-icon">${team.emoji || '🏆'}</div>
+          <div class="team-name">${escHtml(team.name)}</div>
+          <div class="points-display">
+            <div class="points-num">${team.points}</div>
+            <div class="points-label">Punkte</div>
+          </div>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${(pct*100).toFixed(2)}%"></div>
+        </div>
+      `;
+      board.appendChild(row);
+
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        row.classList.add('visible');
+        setTimeout(() => row.querySelector('.bar-fill').classList.add('animate'), 80 + i * 70);
+      }));
+    });
+
+    if (data.updated) {
+      document.getElementById('update-time').textContent =
+        'Zuletzt aktualisiert: ' + data.updated;
+    }
+  } catch(e) {
+    document.getElementById('board').innerHTML = '';
+    document.getElementById('empty').style.display = 'block';
+    document.getElementById('empty').textContent = 'Scoreboard konnte nicht geladen werden.';
+  }
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+loadScores();
+setInterval(loadScores, 30000);
+</script>
+</body>
+</html>

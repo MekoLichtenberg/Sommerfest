@@ -1,0 +1,16 @@
+name = "sommerfest-scoreboard"
+main = "worker.js"
+compatibility_date = "2024-09-01"
+
+# Diese öffentlichen Variablen kannst du hier setzen
+# (oder im Dashboard unter Settings → Variables):
+[vars]
+GH_USER = "DEIN_USERNAME"
+GH_REPO = "sommerfest-scoreboard"
+
+# Die GEHEIMEN Werte NICHT hier eintragen!
+# Stattdessen per CLI setzen:
+#   npx wrangler secret put GH_TOKEN
+#   npx wrangler secret put REGISTER_PW
+#   npx wrangler secret put REFEREE_PW
+#   npx wrangler secret put ADMIN_PW

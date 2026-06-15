@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team anmelden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #fdf6ec; --card: #fff; --border: #ece3d4; --text: #2a241c;
+    --muted: #998f7d; --accent: #e07a3f; --accent-dark: #c4612c;
+    --success: #16a34a; --danger: #dc2626; --input-bg: #fbf6ee;
+  }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'DM Sans', sans-serif; min-height: 100vh;
+    padding: 1.5rem 1rem 3rem;
+    background-image: radial-gradient(circle at 20% 10%, rgba(224,122,63,0.06), transparent 40%);
+  }
+  .container { max-width: 460px; margin: 0 auto; }
+
+  .header { text-align: center; margin-bottom: 1.75rem; }
+  .header .badge {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 6px;
+  }
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 44px;
+    letter-spacing: 0.03em; line-height: 1;
+  }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; padding: 1.75rem; box-shadow: 0 4px 24px rgba(140,100,50,0.06);
+  }
+
+  label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 7px; font-weight: 500; }
+  input[type=text], input[type=password] {
+    width: 100%; background: var(--input-bg); border: 1.5px solid var(--border);
+    border-radius: 11px; padding: 13px 15px; font-family: inherit; font-size: 16px;
+    color: var(--text); outline: none; transition: border-color 0.15s;
+  }
+  input:focus { border-color: var(--accent); }
+  input.shake { animation: shake 0.4s; border-color: var(--danger); }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-7px)} 40%{transform:translateX(7px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+
+  .btn {
+    width: 100%; background: var(--accent); color: #fff; border: none;
+    border-radius: 11px; padding: 14px; font-family: inherit; font-size: 16px;
+    font-weight: 600; cursor: pointer; transition: background 0.15s, transform 0.08s;
+    margin-top: 1rem;
+  }
+  .btn:hover { background: var(--accent-dark); }
+  .btn:active { transform: scale(0.98); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .emoji-grid {
+    display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; margin-top: 4px;
+  }
+  .emoji-btn {
+    aspect-ratio: 1; border: 1.5px solid var(--border); background: var(--input-bg);
+    border-radius: 9px; font-size: 22px; cursor: pointer; transition: all 0.12s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .emoji-btn:hover { border-color: var(--accent); }
+  .emoji-btn.selected { border-color: var(--accent); background: rgba(224,122,63,0.12); transform: scale(1.05); }
+
+  .msg { border-radius: 11px; padding: 12px 15px; font-size: 14px; margin-top: 1rem; display: none; }
+  .msg.success { background: #dcfce7; color: #166534; }
+  .msg.error { background: #fee2e2; color: #991b1b; }
+
+  .registered { margin-top: 1.75rem; }
+  .registered h2 { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .team-chip {
+    display: inline-flex; align-items: center; gap: 8px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 30px; padding: 7px 14px 7px 11px;
+    font-size: 14px; font-weight: 500; margin: 0 6px 6px 0;
+  }
+  .team-chip .e { font-size: 18px; }
+
+  .lock { text-align: center; font-size: 40px; margin-bottom: 0.75rem; }
+  .login-sub { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 1.25rem; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="badge">Sommerfest</div>
+    <h1>Team anmelden</h1>
+  </div>
+
+  <!-- Login -->
+  <div class="card" id="login-card">
+    <div class="lock">🔒</div>
+    <div class="login-sub">Bitte das Anmelde-Passwort eingeben</div>
+    <label>Passwort</label>
+    <input type="password" id="pw" placeholder="••••••" autocomplete="off"
+      onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn" onclick="doLogin()" id="login-btn">Weiter</button>
+    <div class="msg error" id="login-msg"></div>
+  </div>
+
+  <!-- Registration form -->
+  <div class="card hidden" id="form-card">
+    <label>Team-Name</label>
+    <input type="text" id="team-name" placeholder="z.B. Die Donnervögel" maxlength="32">
+
+    <label style="margin-top:1.1rem;">Wähle ein Symbol</label>
+    <div class="emoji-grid" id="emoji-grid"></div>
+
+    <button class="btn" id="submit-btn" onclick="register()">Team anmelden</button>
+    <div class="msg" id="form-msg"></div>
+
+    <div class="registered hidden" id="registered">
+      <h2>Schon angemeldet</h2>
+      <div id="team-chips"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ─── Hier die URL deines Workers eintragen ─── */
+const WORKER_URL = "https://sommerfest-scoreboard.cass70624.workers.dev/";
+/* ──────────────────────────────────────────── */
+
+const EMOJIS = ['🐉','🐺','🦅','🦁','🐯','🦊','🐻','🦄','🐲','🦖','🦈','🐙','⚡','🔥','❄️','🌟','🚀','⚔️','🛡️','👑','🎯','🏆','🍀','💎'];
+let selectedEmoji = '🐉';
+let sessionPw = '';
+
+function buildEmojiGrid() {
+  const grid = document.getElementById('emoji-grid');
+  grid.innerHTML = '';
+  EMOJIS.forEach(e => {
+    const b = document.createElement('button');
+    b.className = 'emoji-btn' + (e === selectedEmoji ? ' selected' : '');
+    b.textContent = e;
+    b.onclick = () => { selectedEmoji = e; buildEmojiGrid(); };
+    grid.appendChild(b);
+  });
+}
+
+async function doLogin() {
+  const pw = document.getElementById('pw').value;
+  const btn = document.getElementById('login-btn');
+  btn.disabled = true;
+  try {
+    const res = await fetch(WORKER_URL + '/api/login', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ role: 'register', password: pw })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      sessionPw = pw;
+      document.getElementById('login-card').classList.add('hidden');
+      document.getElementById('form-card').classList.remove('hidden');
+      buildEmojiGrid();
+      loadTeams();
+    } else {
+      showLoginError();
+    }
+  } catch (e) {
+    document.getElementById('login-msg').textContent = 'Verbindungsfehler. Worker-URL korrekt?';
+    document.getElementById('login-msg').style.display = 'block';
+  }
+  btn.disabled = false;
+}
+
+function showLoginError() {
+  const inp = document.getElementById('pw');
+  inp.classList.remove('shake'); void inp.offsetWidth; inp.classList.add('shake');
+  inp.value = '';
+  const m = document.getElementById('login-msg');
+  m.textContent = 'Falsches Passwort.'; m.style.display = 'block';
+}
+
+async function register() {
+  const name = document.getElementById('team-name').value.trim();
+  const msg = document.getElementById('form-msg');
+  if (!name) { showMsg(msg, 'Bitte einen Teamnamen eingeben.', 'error'); return; }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true; btn.textContent = 'Wird angemeldet...';
+
+  try {
+    const res = await fetch(WORKER_URL + '/api/register', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: sessionPw, name, emoji: selectedEmoji })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      showMsg(msg, '🎉 ' + name + ' ist angemeldet!', 'success');
+      document.getElementById('team-name').value = '';
+      renderTeams(data.teams);
+    } else {
+      showMsg(msg, data.error || 'Fehler bei der Anmeldung.', 'error');
+    }
+  } catch (e) {
+    showMsg(msg, 'Verbindungsfehler.', 'error');
+  }
+  btn.disabled = false; btn.textContent = 'Team anmelden';
+}
+
+async function loadTeams() {
+  try {
+    const res = await fetch(WORKER_URL + '/api/scores');
+    const data = await res.json();
+    renderTeams(data.teams || []);
+  } catch (e) {}
+}
+
+function renderTeams(teams) {
+  const wrap = document.getElementById('registered');
+  const chips = document.getElementById('team-chips');
+  if (!teams || !teams.length) { wrap.classList.add('hidden'); return; }
+  wrap.classList.remove('hidden');
+  chips.innerHTML = '';
+  teams.forEach(t => {
+    const c = document.createElement('span');
+    c.className = 'team-chip';
+    c.innerHTML = `<span class="e">${t.emoji}</span> ${escHtml(t.name)}`;
+    chips.appendChild(c);
+  });
+}
+
+function showMsg(el, text, type) {
+  el.textContent = text; el.className = 'msg ' + type; el.style.display = 'block';
+}
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+</script>
+</body>
+</html>

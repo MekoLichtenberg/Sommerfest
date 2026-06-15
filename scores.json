@@ -1,0 +1,10 @@
+{
+  "title": "Sommerfest 2025",
+  "subtitle": "Wettrennen Scoreboard",
+  "updated": "",
+  "teams": [
+    { "name": "Team Feuerdrachen", "emoji": "🐉", "points": 0 },
+    { "name": "Team Sturmwölfe",   "emoji": "🐺", "points": 0 },
+    { "name": "Team Goldadler",    "emoji": "🦅", "points": 0 }
+  ]
+}
