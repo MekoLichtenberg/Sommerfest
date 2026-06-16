@@ -1,13 +1,25 @@
 {
   "title": "Sommerfest 2025",
   "subtitle": "Wettrennen Scoreboard",
-  "updated": "16.6.2026, 00:37:50",
+  "updated": "16.6.2026, 13:37:06",
   "teams": [
     {
       "id": "t_gpvykvn",
       "name": "Team Goldadler",
       "emoji": "🦅",
       "points": 6
+    },
+    {
+      "id": "t_crm2uw6",
+      "name": "Die Stars",
+      "emoji": "⭐",
+      "points": 3
+    },
+    {
+      "id": "t_wgcoyh5",
+      "name": "Andreas",
+      "emoji": "🍪​",
+      "points": 10
     }
   ]
 }
