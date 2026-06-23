@@ -1,23 +1,6 @@
-/* ════════════════════════════════════════════════════════════
-   Sommerfest Scoreboard — Cloudflare Worker (sicheres Backend)
-
-   Der GitHub-Token liegt NUR hier als geheime Variable.
-   Die öffentlichen Seiten reden nur mit diesem Worker und
-   sehen den Token nie.
-
-   Benötigte Variablen (im Cloudflare-Dashboard setzen):
-     Secrets:   GH_TOKEN, REGISTER_PW, REFEREE_PW, ADMIN_PW
-     Variables: GH_USER, GH_REPO
-   ════════════════════════════════════════════════════════════ */
-
 const GH_API = 'https://api.github.com';
 const FILE = 'scores.json';
 
-/* ── Spiele ─────────────────────────────────────────────────────
-   Anzeigenamen (NICHT geheim). Die Code→Spiel-Zuordnung kommt aus
-   dem geheimen Secret GAME_CODES (JSON), damit die 4-stelligen
-   Codes nicht im öffentlichen Repo stehen:
-     GAME_CODES = {"1234":"dosenwerfen","5678":"sackwerfen", ...}    */
 const GAME_LABELS = {
   dosenwerfen:    'Dosenwerfen',
   heisser_draht:  'Heißer Draht',
@@ -39,7 +22,6 @@ function gameFromCode(code, env) {
   return { key, label: GAME_LABELS[key] || key };
 }
 
-/* Gesamtpunkte eines Teams = Summe aller Spiel-Werte */
 function sumGames(team) {
   return Object.values(team.games || {}).reduce((a, b) => a + (Number(b) || 0), 0);
 }
