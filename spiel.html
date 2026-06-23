@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spiel-Wertung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #14151c; --card: #1e2029; --border: #2c2f3a; --text: #f0eef8;
+    --muted: #8b8a99; --accent: #4ade80; --minus: #f87171; --input-bg: #181a22;
+  }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'DM Sans', sans-serif; min-height: 100vh;
+    padding: 1.25rem 1rem 3rem; -webkit-tap-highlight-color: transparent;
+  }
+  .container { max-width: 520px; margin: 0 auto; }
+
+  .header { text-align: center; margin-bottom: 1.5rem; position: relative; }
+  .header .badge { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 5px; }
+  .header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 0.03em; line-height: 1; }
+  .logout { position: absolute; right: 0; top: 4px; font-size: 12px; color: var(--muted); cursor: pointer; text-decoration: underline; }
+
+  /* Code-Login */
+  .login-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 2rem 1.75rem; text-align: center; max-width: 360px; margin: 3rem auto 0;
+  }
+  .login-card .lock { font-size: 40px; margin-bottom: 0.75rem; }
+  .login-card p { color: var(--muted); font-size: 14px; margin-bottom: 1.25rem; }
+  input[type=text] {
+    width: 100%; background: var(--input-bg); border: 1.5px solid var(--border);
+    border-radius: 11px; padding: 14px 15px; font-family: 'Bebas Neue', sans-serif; font-size: 30px;
+    color: var(--text); outline: none; text-align: center; letter-spacing: 0.4em;
+  }
+  input:focus { border-color: var(--accent); }
+  input.shake { animation: shake 0.4s; border-color: var(--minus); }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-7px)} 40%{transform:translateX(7px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+  .btn-primary {
+    width: 100%; background: var(--accent); color: #06281a; border: none;
+    border-radius: 11px; padding: 14px; font-family: inherit; font-size: 16px;
+    font-weight: 700; cursor: pointer; margin-top: 1rem;
+  }
+  .login-err { color: var(--minus); font-size: 13px; height: 18px; margin-top: 0.75rem; }
+
+  /* Fortschritt */
+  .progress { text-align: center; font-size: 13px; color: var(--muted); margin-bottom: 1rem; }
+  .progress b { color: var(--accent); }
+
+  /* Team-Karten */
+  #teams { display: flex; flex-direction: column; gap: 10px; }
+  .team {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 13px 15px; position: relative;
+    transition: border-color 0.25s, opacity 0.25s;
+  }
+  .team.done { border-color: rgba(74,222,128,0.45); }
+  .team-head { display: flex; align-items: center; gap: 11px; margin-bottom: 11px; }
+  .team-emoji { font-size: 26px; line-height: 1; }
+  .team-name { font-size: 16px; font-weight: 600; flex: 1; }
+  .team-val {
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px; min-width: 58px; text-align: right;
+    color: var(--muted); letter-spacing: 0.02em;
+  }
+  .team.done .team-val { color: var(--accent); }
+  .team-val.flash { animation: flash 0.45s; }
+  @keyframes flash { 0%{transform:scale(1.3)} 100%{transform:scale(1)} }
+
+  .btns { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+  .vbtn {
+    border: 1.5px solid var(--border); background: var(--input-bg); color: var(--text);
+    border-radius: 10px; padding: 13px 0; font-family: inherit; font-size: 16px; font-weight: 700;
+    cursor: pointer; transition: transform 0.08s, background 0.12s, border-color 0.12s, color 0.12s;
+  }
+  .vbtn:active { transform: scale(0.9); }
+  .vbtn:hover { border-color: #3a3d49; }
+  .vbtn.sel { background: var(--accent); color: #06281a; border-color: var(--accent); }
+  .vbtn.zero.sel { background: #3a3d49; color: var(--text); border-color: #3a3d49; }
+
+  .toast {
+    position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--minus); color: #fff; padding: 11px 20px; border-radius: 10px;
+    font-size: 14px; opacity: 0; transition: all 0.25s; pointer-events: none; z-index: 10;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .empty { text-align: center; color: var(--muted); padding: 3rem 1rem; font-size: 15px; }
+  .hidden { display: none !important; }
+  .refresh { display: block; margin: 1.5rem auto 0; background: none; border: 1px solid var(--border); color: var(--muted); border-radius: 9px; padding: 8px 18px; font-family: inherit; font-size: 13px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="badge">Schiedsrichter</div>
+    <h1 id="game-title">Spiel-Wertung</h1>
+    <span class="logout hidden" id="logout" onclick="logout()">Beenden</span>
+  </div>
+
+  <!-- Code-Login -->
+  <div class="login-card" id="login-card">
+    <div class="lock">🎯</div>
+    <p>4-stelligen Spiel-Code eingeben</p>
+    <input type="text" id="code" inputmode="numeric" maxlength="4" placeholder="0000" autocomplete="off"
+      onkeydown="if(event.key==='Enter')doLogin()">
+    <div class="login-err" id="login-err"></div>
+    <button class="btn-primary" onclick="doLogin()" id="login-btn">Spiel öffnen</button>
+  </div>
+
+  <!-- Wertung -->
+  <div id="game-ui" class="hidden">
+    <div class="progress" id="progress"></div>
+    <div id="teams"></div>
+    <div class="empty hidden" id="empty">Noch keine Teams angemeldet.</div>
+    <button class="refresh" id="refresh" onclick="refresh()">↻ Teams neu laden</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ─── Worker-URL ─── */
+const WORKER_URL = "https://sommerfest-scoreboard.cass70624.workers.dev";
+
+let sessionCode = '';
+let gameKey = '';
+let teams = [];                 // [{ id, name, emoji, value }]
+const rowEls = new Map();       // teamId -> Element
+
+/* ── Login mit Spiel-Code ── */
+async function doLogin() {
+  const code = document.getElementById('code').value.trim();
+  const btn = document.getElementById('login-btn');
+  btn.disabled = true;
+  try {
+    const res = await fetch(WORKER_URL + '/api/game/login', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      sessionCode = code;
+      gameKey = data.game;
+      document.getElementById('game-title').textContent = data.label;
+      document.title = data.label + ' – Wertung';
+      document.getElementById('login-card').classList.add('hidden');
+      document.getElementById('game-ui').classList.remove('hidden');
+      document.getElementById('logout').classList.remove('hidden');
+      syncTeams(data.teams);
+      render();
+    } else {
+      const inp = document.getElementById('code');
+      inp.classList.remove('shake'); void inp.offsetWidth; inp.classList.add('shake'); inp.value = '';
+      document.getElementById('login-err').textContent = 'Ungültiger Code.';
+    }
+  } catch (e) {
+    document.getElementById('login-err').textContent = 'Verbindungsfehler.';
+  }
+  btn.disabled = false;
+}
+
+function logout() { location.reload(); }
+
+/* Server-Teams in lokales Format (mit Wert für DIESES Spiel) übernehmen */
+function syncTeams(serverTeams) {
+  teams = (serverTeams || []).map(t => ({
+    id: t.id, name: t.name, emoji: t.emoji,
+    value: (t.games && t.games[gameKey]) || 0
+  }));
+}
+
+async function refresh() {
+  try {
+    const res = await fetch(WORKER_URL + '/api/game/login', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: sessionCode })
+    });
+    const data = await res.json();
+    if (data.ok) { syncTeams(data.teams); render(); }
+  } catch (e) { toast('Konnte nicht laden'); }
+}
+
+/* ── Sortierung: offene (0) oben alphabetisch, erledigte (>0) unten alphabetisch ── */
+function sorted() {
+  return [...teams].sort((a, b) =>
+    (a.value > 0) - (b.value > 0) || a.name.localeCompare(b.name, 'de')
+  );
+}
+
+function render() {
+  const wrap = document.getElementById('teams');
+  const empty = document.getElementById('empty');
+  if (!teams.length) {
+    rowEls.forEach(el => el.remove()); rowEls.clear();
+    empty.classList.remove('hidden'); updateProgress(); return;
+  }
+  empty.classList.add('hidden');
+
+  // FLIP: alte Positionen merken
+  const oldTop = new Map();
+  rowEls.forEach((el, id) => oldTop.set(id, el.getBoundingClientRect().top));
+
+  // Zeilen aktualisieren/erstellen + in sortierter Reihenfolge anhängen
+  sorted().forEach(t => {
+    let el = rowEls.get(t.id) || createRow(t.id);
+    rowEls.set(t.id, el);
+    updateRow(el, t);
+    wrap.appendChild(el);
+  });
+
+  // entfernte Teams raus
+  rowEls.forEach((el, id) => {
+    if (!teams.some(t => t.id === id)) { el.remove(); rowEls.delete(id); }
+  });
+
+  // FLIP: zur neuen Position gleiten
+  rowEls.forEach((el, id) => {
+    const prev = oldTop.get(id);
+    if (prev == null) return;
+    const dy = prev - el.getBoundingClientRect().top;
+    if (dy) el.animate(
+      [{ transform: `translateY(${dy}px)` }, { transform: 'none' }],
+      { duration: 450, easing: 'cubic-bezier(0.22,1,0.36,1)' }
+    );
+  });
+
+  updateProgress();
+}
+
+function createRow(id) {
+  const el = document.createElement('div');
+  el.className = 'team';
+  el.innerHTML = `
+    <div class="team-head">
+      <span class="team-emoji"></span>
+      <span class="team-name"></span>
+      <span class="team-val"></span>
+    </div>
+    <div class="btns">
+      ${[0,1,2,3,4,5].map(v =>
+        `<button class="vbtn${v===0?' zero':''}" data-v="${v}">${v}</button>`).join('')}
+    </div>`;
+  el.querySelectorAll('.vbtn').forEach(b =>
+    b.addEventListener('click', () => setValue(id, +b.dataset.v)));
+  return el;
+}
+
+function updateRow(el, t) {
+  el.classList.toggle('done', t.value > 0);
+  el.querySelector('.team-emoji').textContent = t.emoji || '⭐';
+  el.querySelector('.team-name').textContent = t.name;
+  el.querySelector('.team-val').textContent = t.value > 0 ? t.value + ' Pkt' : '—';
+  el.querySelectorAll('.vbtn').forEach(b =>
+    b.classList.toggle('sel', +b.dataset.v === t.value));
+}
+
+function updateProgress() {
+  const done = teams.filter(t => t.value > 0).length;
+  document.getElementById('progress').innerHTML =
+    teams.length ? `<b>${done}</b> / ${teams.length} bepunktet` : '';
+}
+
+/* ── Wert setzen (optimistisch, dann Server) ── */
+async function setValue(id, v) {
+  const t = teams.find(x => x.id === id);
+  if (!t || t.value === v) return;
+  const old = t.value;
+  t.value = v;
+  render();
+  const el = rowEls.get(id);
+  if (el) { const vEl = el.querySelector('.team-val'); vEl.classList.remove('flash'); void vEl.offsetWidth; vEl.classList.add('flash'); }
+
+  try {
+    const res = await fetch(WORKER_URL + '/api/game/set', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: sessionCode, teamId: id, value: v })
+    });
+    const data = await res.json();
+    if (data.ok) { syncTeams(data.teams); render(); }
+    else { t.value = old; render(); toast(data.error || 'Fehler'); }
+  } catch (e) { t.value = old; render(); toast('Verbindungsfehler'); }
+}
+
+let toastTimer;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>
