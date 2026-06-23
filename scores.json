@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "23.6.2026, 21:05:35",
+  "updated": "23.6.2026, 21:05:39",
   "teams": [
     {
       "id": "t_gpvykvn",
@@ -45,12 +45,13 @@
       "id": "t_iuv8eez",
       "name": "Skullcrushers",
       "emoji": "💀",
-      "points": 12,
+      "points": 13,
       "games": {
         "dosenwerfen": 5,
         "heisser_draht": 4,
         "tetris": 0,
-        "zeitnehmen": 3
+        "zeitnehmen": 3,
+        "sackwerfen": 1
       }
     },
     {
