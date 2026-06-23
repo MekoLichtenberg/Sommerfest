@@ -80,18 +80,23 @@
     position: relative; z-index: 1;
   }
 
-  #top, #rest { display: flex; flex-direction: column; gap: 10px; }
+  #top { display: flex; flex-direction: column; gap: 10px; }
 
-  /* Trenner zwischen Top 5 und dem Rest */
-  .rest-sep {
-    display: flex; align-items: center; gap: 12px;
-    margin: 6px 2px 0; font-size: 10px; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--muted);
+  /* Rest = langsam durchlaufender Lauftext (Platz 6+) */
+  #rest-track { will-change: transform; }
+  .rseg { display: flex; flex-direction: column; gap: 10px; padding-bottom: 10px; }
+  .rrow {
+    display: flex; align-items: center; gap: 14px;
+    padding: 11px 18px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 12px;
   }
-  .rest-sep::before, .rest-sep::after {
-    content: ''; flex: 1; height: 1px;
-    background: linear-gradient(to right, transparent, var(--border), transparent);
-  }
+  .rrow .rrank { min-width: 24px; text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--muted); flex-shrink: 0; }
+  .rrow .remoji { font-size: 22px; flex-shrink: 0; line-height: 1; }
+  .rrow .rname { flex: 1; font-size: 15px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rrow .rpts { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--text); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+
+  /* schlichte Trennlinie (ohne Text) zwischen Top 5 und Rest */
+  .rest-sep { height: 0; border-top: 1px solid var(--border); margin: 14px 2px 12px; }
 
   /* Scrollbereich für Platz 6+ */
   #rest-wrap {
@@ -200,8 +205,8 @@
 
 <div id="board">
   <div id="top"></div>
-  <div class="rest-sep" id="rest-sep" style="display:none;">weitere Teams</div>
-  <div id="rest-wrap" style="display:none;"><div id="rest"></div></div>
+  <div class="rest-sep" id="rest-sep" style="display:none;"></div>
+  <div id="rest-wrap" style="display:none;"><div id="rest-track"></div></div>
 </div>
 <div class="empty-state" id="empty" style="display:none;">Noch keine Teams eingetragen.</div>
 <div class="update-time" id="update-time"></div>
@@ -214,7 +219,7 @@ const SCORES_URL = WORKER_URL ? WORKER_URL + '/api/scores' : 'scores.json';
 
 const TOP_COUNT = 5;                          // so viele Teams bleiben oben fix stehen
 const topEl    = document.getElementById('top');
-const restEl   = document.getElementById('rest');
+const restTrack = document.getElementById('rest-track');
 const restWrap = document.getElementById('rest-wrap');
 const restSep  = document.getElementById('rest-sep');
 const rows = new Map();   // teamId -> { el, num, bar, badge, points }
@@ -235,7 +240,7 @@ async function loadScores() {
   if (data.updated)
     document.getElementById('update-time').textContent = 'Zuletzt aktualisiert: ' + data.updated;
 
-  const teams = [...(data.teams || [])].sort((a, b) => b.points - a.points);
+  const teams = [...(data.teams || [])].sort((a, b) => b.points - a.points || (a.ts || 0) - (b.ts || 0));
   if (!teams.length) { rows.forEach(r => r.el.remove()); rows.clear(); showEmpty('Noch keine Teams eingetragen.'); return; }
   document.getElementById('empty').style.display = 'none';
 
@@ -243,46 +248,43 @@ async function loadScores() {
 }
 
 function render(teams) {
+  renderTop(teams.slice(0, TOP_COUNT));
+  renderRest(teams.slice(TOP_COUNT), TOP_COUNT + 1);   // erster Rest-Platz = 6
+}
+
+// ── Top 5: feste Zeilen mit Eurovision-Sprung ──
+function renderTop(teams) {
   const maxPts = Math.max(...teams.map(t => t.points), 1);
 
-  // 1) FLIP – alte Positionen merken
+  // FLIP – alte Positionen merken
   const oldTop = new Map();
   rows.forEach((r, id) => oldTop.set(id, r.el.getBoundingClientRect().top));
 
-  // 2) Zeilen aktualisieren/erstellen und in neuer Reihenfolge einsortieren
   const gainers = [];
   teams.forEach((team, i) => {
     let r = rows.get(team.id);
     if (!r) { r = createRow(team); rows.set(team.id, r); }
-
     if (!firstLoad && team.points > r.points) { r._from = r.points; gainers.push(r); }
-
     setRow(r, team, i, maxPts);
     r.points = team.points;
-    (i < TOP_COUNT ? topEl : restEl).appendChild(r.el);   // Top 5 oben fix, Rest in den Scrollbereich
+    topEl.appendChild(r.el);
   });
 
-  // entfernte Teams rausnehmen
+  // Teams, die nicht mehr in den Top 5 sind, entfernen (rutschen in den Lauftext)
   rows.forEach((r, id) => {
     if (!teams.some(t => t.id === id)) { r.el.remove(); rows.delete(id); }
   });
 
-  const hasRest = teams.length > TOP_COUNT;
-  restSep.style.display  = hasRest ? 'flex' : 'none';
-  restWrap.style.display = hasRest ? 'block' : 'none';
-  fitRest();
-
-  // 3) FLIP – von alter zu neuer Position animieren (Eurovision-Slide)
   if (!firstLoad) {
     const gainEls = new Set(gainers.map(r => r.el));
     rows.forEach((r, id) => {
       const prev = oldTop.get(id);
-      if (prev == null) { r.el.classList.add('enter'); return; }   // neues Team: einblenden
+      if (prev == null) { r.el.classList.add('enter'); return; }   // neu in den Top 5: einblenden
       const dy = prev - r.el.getBoundingClientRect().top;
       const isGain = gainEls.has(r.el);
       if (!dy && !isGain) return;
       if (isGain) {
-        // Gewinner-Zeile: Sprung mit Lift + leichtem Überschwung, liegt oben drauf
+        // Gewinner: Sprung mit Lift + leichtem Überschwung, liegt oben drauf
         r.el.animate(
           [
             { transform: `translateY(${dy}px) scale(1.05)` },
@@ -292,7 +294,6 @@ function render(teams) {
           { duration: 820, easing: 'cubic-bezier(0.34,1.4,0.64,1)' }
         );
       } else {
-        // weichende Zeilen: ruhig nach unten gleiten
         r.el.animate(
           [{ transform: `translateY(${dy}px)` }, { transform: 'translateY(0)' }],
           { duration: 640, easing: 'cubic-bezier(0.22,1,0.36,1)' }
@@ -306,6 +307,27 @@ function render(teams) {
     firstLoad = false;
   }
 }
+
+// ── Rest (Platz 6+): langsam durchlaufender Lauftext, nahtlose Schleife ──
+function renderRest(teams, startRank) {
+  const hasRest = teams.length > 0;
+  restSep.style.display  = hasRest ? 'block' : 'none';
+  restWrap.style.display = hasRest ? 'block' : 'none';
+  if (!hasRest) { restTrack.innerHTML = ''; return; }
+
+  const seg = teams.map((t, i) => `
+    <div class="rrow">
+      <span class="rrank">${startRank + i}</span>
+      <span class="remoji">${t.emoji || '🏆'}</span>
+      <span class="rname">${escHtml(t.name)}</span>
+      <span class="rpts">${t.points}</span>
+    </div>`).join('');
+  // zwei identische Kopien → nahtloser Endlos-Lauf
+  restTrack.innerHTML = `<div class="rseg">${seg}</div><div class="rseg" aria-hidden="true">${seg}</div>`;
+  fitRest();
+}
+
+function escHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
 function createRow(team) {
   const el = document.createElement('div');
@@ -362,31 +384,36 @@ function showEmpty(msg) {
   e.textContent = msg; e.style.display = 'block';
 }
 
-// Höhe des Rest-Bereichs an den Bildschirm anpassen (füllt bis kurz vors Seitenende)
+// Lauftext-Fenster auf ~3,5 Zeilen einstellen (man sieht 3–4 Teams gleichzeitig)
 function fitRest() {
   if (restWrap.style.display === 'none') return;
-  const top = restWrap.getBoundingClientRect().top;
-  restWrap.style.maxHeight = Math.max(140, window.innerHeight - top - 110) + 'px';
+  const row = restTrack.querySelector('.rrow');
+  const rh = row ? row.getBoundingClientRect().height + 10 : 56;   // Zeilenhöhe + Abstand
+  restWrap.style.height = Math.round(rh * 3.5) + 'px';
 }
 window.addEventListener('resize', fitRest);
 
-// Sanftes Auto-Scrollen des Rest-Bereichs – nur wenn er überläuft, mit Pause oben/unten
-let scrollDir = 1, scrollPause = 90;
-function autoScroll() {
+// Lauftext-Motor: Inhalt langsam nach oben schieben, nahtlos loopen (nur wenn er überläuft)
+let mPos = 0, mLast = 0;
+function marquee(now) {
   if (restWrap.style.display !== 'none') {
-    const max = restEl.scrollHeight - restWrap.clientHeight;
-    if (max > 2) {
-      if (scrollPause > 0) { scrollPause--; }
-      else {
-        restWrap.scrollTop += scrollDir * 0.35;
-        if (restWrap.scrollTop >= max)      { restWrap.scrollTop = max; scrollDir = -1; scrollPause = 110; }
-        else if (restWrap.scrollTop <= 0)   { restWrap.scrollTop = 0;   scrollDir =  1; scrollPause = 110; }
+    const seg = restTrack.querySelector('.rseg');
+    if (seg) {
+      const segH = seg.getBoundingClientRect().height;
+      if (segH > restWrap.clientHeight + 1) {
+        const dt = mLast ? (now - mLast) / 1000 : 0;
+        mPos -= 22 * dt;                  // 22 px/s – langsam
+        if (mPos <= -segH) mPos += segH;  // nahtlos: zweite Kopie steht exakt an Kopie-1-Position
+        restTrack.style.transform = `translateY(${mPos}px)`;
+      } else {
+        mPos = 0; restTrack.style.transform = 'translateY(0)';
       }
     }
   }
-  requestAnimationFrame(autoScroll);
+  mLast = now;
+  requestAnimationFrame(marquee);
 }
-requestAnimationFrame(autoScroll);
+requestAnimationFrame(marquee);
 
 loadScores();
 setInterval(loadScores, 10000);   // alle 10 s aktualisieren (schont GitHub-/Cloudflare-Limit)

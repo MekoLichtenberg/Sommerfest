@@ -170,7 +170,9 @@ export default {
           if (!team) throw new Error('Team nicht gefunden');
           team.games = team.games || {};
           team.games[game.key] = v;
-          team.points = sumGames(team);
+          const newPts = sumGames(team);
+          if (newPts !== team.points) team.ts = Date.now();   // Zeitstempel für Tie-Break
+          team.points = newPts;
           return d;
         });
         return json({ ok: true, game: game.key, teams: result.teams });
@@ -200,8 +202,10 @@ export default {
         const result = await writeWithRetry(env, d => {
           const team = (d.teams || []).find(t => t.id === teamId);
           if (!team) throw new Error('Team nicht gefunden');
+          const before = team.points;
           if (typeof set === 'number')        team.points = Math.max(0, Math.round(set));
           else if (typeof delta === 'number') team.points = Math.max(0, (team.points || 0) + delta);
+          if (team.points !== before) team.ts = Date.now();
           return d;
         });
         return json({ ok: true, teams: result.teams });
@@ -218,12 +222,14 @@ export default {
             const prev = new Map((d.teams || []).map(t => [t.id, t]));
             d.teams = teams.map(t => {
               const ex = prev.get(t.id);
+              const pts = Math.max(0, Math.round(Number(t.points) || 0));
               return {
                 id: t.id || newId(),
                 name: (t.name || '').trim() || 'Team',
                 emoji: t.emoji || '⭐',
-                points: Math.max(0, Math.round(Number(t.points) || 0)),
-                games: ex ? (ex.games || {}) : {},   // Spiel-Werte erhalten
+                points: pts,
+                games: ex ? (ex.games || {}) : {},                  // Spiel-Werte erhalten
+                ts: (ex && ex.points === pts) ? ex.ts : Date.now(), // Zeitstempel erhalten / bei Änderung neu
               };
             });
           }
