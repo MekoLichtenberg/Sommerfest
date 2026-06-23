@@ -13,24 +13,30 @@
 const GH_API = 'https://api.github.com';
 const FILE = 'scores.json';
 
-/* ── Spiele: 4-stelliger Code → Spiel ──────────────────────────
-   Diese Codes geben die Schiedsrichter auf spiel.html ein.
-   Jeder Code schaltet genau ein Spiel frei.                       */
-const GAMES = {
-  '6023': { key: 'dosenwerfen',    label: 'Dosenwerfen' },
-  '5061': { key: 'heisser_draht',  label: 'Heißer Draht' },
-  '6641': { key: 'sackwerfen',     label: 'Sackwerfen' },
-  '1601': { key: 'zeitnehmen',     label: 'Zeitnehmen' },
-  '6544': { key: 'kaesespiel',     label: 'Käsespiel' },
-  '9748': { key: 'fussballslalom', label: 'Fußballslalom' },
-  '4293': { key: 'balancierfeder', label: 'Balancierfeder' },
-  '8243': { key: 'bogenschiessen', label: 'Bogenschießen' },
-  '2013': { key: 'spinnennetz',    label: 'Spinnennetz' },
-  '6247': { key: 'tetris',         label: 'Tetris' },
+/* ── Spiele ─────────────────────────────────────────────────────
+   Anzeigenamen (NICHT geheim). Die Code→Spiel-Zuordnung kommt aus
+   dem geheimen Secret GAME_CODES (JSON), damit die 4-stelligen
+   Codes nicht im öffentlichen Repo stehen:
+     GAME_CODES = {"1234":"dosenwerfen","5678":"sackwerfen", ...}    */
+const GAME_LABELS = {
+  dosenwerfen:    'Dosenwerfen',
+  heisser_draht:  'Heißer Draht',
+  sackwerfen:     'Sackwerfen',
+  zeitnehmen:     'Zeitnehmen',
+  kaesespiel:     'Käsespiel',
+  fussballslalom: 'Fußballslalom',
+  balancierfeder: 'Balancierfeder',
+  bogenschiessen: 'Bogenschießen',
+  spinnennetz:    'Spinnennetz',
+  tetris:         'Tetris',
 };
 
-function gameFromCode(code) {
-  return GAMES[String(code || '').trim()] || null;
+function gameFromCode(code, env) {
+  let map = {};
+  try { map = JSON.parse(env.GAME_CODES || '{}'); } catch (e) { map = {}; }
+  const key = map[String(code || '').trim()];
+  if (!key) return null;
+  return { key, label: GAME_LABELS[key] || key };
 }
 
 /* Gesamtpunkte eines Teams = Summe aller Spiel-Werte */
@@ -146,7 +152,7 @@ export default {
       /* ── Spiel-Login: Code → Spiel + aktuelle Teams ── */
       if (path === '/api/game/login' && request.method === 'POST') {
         const { code } = await request.json();
-        const game = gameFromCode(code);
+        const game = gameFromCode(code, env);
         if (!game) return json({ ok: false });
         const { data } = await ghGetFile(env);
         return json({ ok: true, game: game.key, label: game.label, teams: data.teams || [] });
@@ -155,7 +161,7 @@ export default {
       /* ── Spiel-Wertung setzen (0–5 für ein Team in diesem Spiel) ── */
       if (path === '/api/game/set' && request.method === 'POST') {
         const { code, teamId, value } = await request.json();
-        const game = gameFromCode(code);
+        const game = gameFromCode(code, env);
         if (!game) return json({ error: 'Ungültiger Code' }, 401);
         const v = Math.round(Number(value));
         if (!(v >= 0 && v <= 5)) return json({ error: 'Wert muss 0–5 sein' }, 400);

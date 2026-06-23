@@ -14,3 +14,4 @@ GH_REPO = "sommerfest-scoreboard"
 #   npx wrangler secret put REGISTER_PW
 #   npx wrangler secret put REFEREE_PW
 #   npx wrangler secret put ADMIN_PW
+#   npx wrangler secret put GAME_CODES   # JSON: {"1234":"dosenwerfen", ...}
