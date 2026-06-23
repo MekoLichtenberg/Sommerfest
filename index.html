@@ -153,6 +153,7 @@
   .points-num {
     font-family: 'Bebas Neue', sans-serif; font-size: 28px;
     line-height: 1; letter-spacing: 0.03em; color: var(--text);
+    font-variant-numeric: tabular-nums;
   }
   .points-num.bump { animation: bump 0.6s ease; }
   @keyframes bump {
@@ -254,7 +255,7 @@ function render(teams) {
     let r = rows.get(team.id);
     if (!r) { r = createRow(team); rows.set(team.id, r); }
 
-    if (!firstLoad && team.points > r.points) gainers.push(r);
+    if (!firstLoad && team.points > r.points) { r._from = r.points; gainers.push(r); }
 
     setRow(r, team, i, maxPts);
     r.points = team.points;
@@ -273,15 +274,30 @@ function render(teams) {
 
   // 3) FLIP – von alter zu neuer Position animieren (Eurovision-Slide)
   if (!firstLoad) {
+    const gainEls = new Set(gainers.map(r => r.el));
     rows.forEach((r, id) => {
       const prev = oldTop.get(id);
       if (prev == null) { r.el.classList.add('enter'); return; }   // neues Team: einblenden
       const dy = prev - r.el.getBoundingClientRect().top;
-      if (!dy) return;
-      r.el.animate(
-        [{ transform: `translateY(${dy}px)` }, { transform: 'translateY(0)' }],
-        { duration: 750, easing: 'cubic-bezier(0.22,1,0.36,1)' }
-      );
+      const isGain = gainEls.has(r.el);
+      if (!dy && !isGain) return;
+      if (isGain) {
+        // Gewinner-Zeile: Sprung mit Lift + leichtem Überschwung, liegt oben drauf
+        r.el.animate(
+          [
+            { transform: `translateY(${dy}px) scale(1.05)` },
+            { transform: `translateY(${dy * 0.15}px) scale(1.07)`, offset: 0.55 },
+            { transform: 'translateY(0) scale(1)' }
+          ],
+          { duration: 820, easing: 'cubic-bezier(0.34,1.4,0.64,1)' }
+        );
+      } else {
+        // weichende Zeilen: ruhig nach unten gleiten
+        r.el.animate(
+          [{ transform: `translateY(${dy}px)` }, { transform: 'translateY(0)' }],
+          { duration: 640, easing: 'cubic-bezier(0.22,1,0.36,1)' }
+        );
+      }
     });
     gainers.forEach(flashGain);
   } else {
@@ -328,6 +344,17 @@ function setRow(r, team, i, maxPts) {
 function flashGain(r) {
   r.el.classList.remove('gain'); void r.el.offsetWidth; r.el.classList.add('gain');
   r.num.classList.remove('bump'); void r.num.offsetWidth; r.num.classList.add('bump');
+  countUp(r.num, r._from != null ? r._from : r.points, r.points, 600);  // Zahl hochzählen
+}
+
+// Punktzahl flott von 'from' auf 'to' hochzählen
+function countUp(el, from, to, ms) {
+  const start = performance.now();
+  (function tick(now) {
+    const p = Math.min(1, (now - start) / ms);
+    el.textContent = Math.round(from + (to - from) * p);
+    if (p < 1) requestAnimationFrame(tick);
+  })(performance.now());
 }
 
 function showEmpty(msg) {
@@ -362,7 +389,7 @@ function autoScroll() {
 requestAnimationFrame(autoScroll);
 
 loadScores();
-setInterval(loadScores, 30000);
+setInterval(loadScores, 3000);   // alle 3 s aktualisieren → Animation kommt fast sofort
 </script>
 </body>
 </html>
