@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "23.6.2026, 20:55:05",
+  "updated": "23.6.2026, 20:55:16",
   "teams": [
     {
       "id": "t_gpvykvn",
@@ -62,10 +62,10 @@
       "id": "t_nn6ejrz",
       "name": "Hobbyhorsing",
       "emoji": "🏇🏿",
-      "points": 5,
+      "points": 3,
       "games": {
         "tetris": 0,
-        "zeitnehmen": 5
+        "zeitnehmen": 3
       }
     }
   ]
