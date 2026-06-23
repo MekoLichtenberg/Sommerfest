@@ -51,16 +51,22 @@
     z-index: 0;
   }
 
-  header { text-align: center; margin-bottom: 3rem; position: relative; z-index: 1; }
+  header { text-align: center; margin-bottom: 1.6rem; position: relative; z-index: 1; }
+
+  /* blasses Logo-Wasserzeichen hinter der Liste */
+  .watermark {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: min(92vw, 720px); opacity: 0.12; pointer-events: none; z-index: 0;
+  }
 
   .event-label {
     font-weight: 300; font-size: 11px; letter-spacing: 0.22em;
     text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
   }
   .logo {
-    display: block; width: 100%; max-width: 360px; height: auto; margin: 0 auto;
-    filter: drop-shadow(0 8px 30px rgba(244,122,31,0.25))
-            drop-shadow(0 4px 22px rgba(59,130,246,0.22));
+    display: block; width: 100%; max-width: 240px; height: auto; margin: 0 auto;
+    filter: drop-shadow(0 6px 18px rgba(244,122,31,0.25))
+            drop-shadow(0 3px 14px rgba(59,130,246,0.22));
   }
   .subtitle { font-size: 13px; color: var(--muted); font-weight: 300; }
   .divider {
@@ -72,6 +78,26 @@
     width: 100%; max-width: 680px;
     display: flex; flex-direction: column; gap: 10px;
     position: relative; z-index: 1;
+  }
+
+  #top, #rest { display: flex; flex-direction: column; gap: 10px; }
+
+  /* Trenner zwischen Top 5 und dem Rest */
+  .rest-sep {
+    display: flex; align-items: center; gap: 12px;
+    margin: 6px 2px 0; font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .rest-sep::before, .rest-sep::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+  }
+
+  /* Scrollbereich für Platz 6+ */
+  #rest-wrap {
+    position: relative; overflow: hidden; padding: 4px 0;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22px, #000 calc(100% - 22px), transparent);
+            mask-image: linear-gradient(to bottom, transparent, #000 22px, #000 calc(100% - 22px), transparent);
   }
 
   .row {
@@ -163,14 +189,19 @@
 </head>
 <body>
 
+<img class="watermark" src="logo.png" alt="" aria-hidden="true">
+
 <header>
-  <div class="event-label" id="event-label">Sommerfest 2026</div>
-  <img class="logo" src="logo.png" alt="We Will Rock You – Kids vs JFE Team">
+  <img class="logo" src="onlyTitle.png" alt="We Will Rock You – Kids vs JFE Team">
   <div class="divider"></div>
   <div class="subtitle" id="header-subtitle">Wettrennen Scoreboard</div>
 </header>
 
-<div id="board"></div>
+<div id="board">
+  <div id="top"></div>
+  <div class="rest-sep" id="rest-sep" style="display:none;">weitere Teams</div>
+  <div id="rest-wrap" style="display:none;"><div id="rest"></div></div>
+</div>
 <div class="empty-state" id="empty" style="display:none;">Noch keine Teams eingetragen.</div>
 <div class="update-time" id="update-time"></div>
 <button id="refresh-btn" onclick="loadScores()">↻ Aktualisieren</button>
@@ -180,7 +211,11 @@
 const WORKER_URL = "https://sommerfest-scoreboard.cass70624.workers.dev";
 const SCORES_URL = WORKER_URL ? WORKER_URL + '/api/scores' : 'scores.json';
 
-const board = document.getElementById('board');
+const TOP_COUNT = 5;                          // so viele Teams bleiben oben fix stehen
+const topEl    = document.getElementById('top');
+const restEl   = document.getElementById('rest');
+const restWrap = document.getElementById('rest-wrap');
+const restSep  = document.getElementById('rest-sep');
 const rows = new Map();   // teamId -> { el, num, bar, badge, points }
 let firstLoad = true;
 
@@ -195,7 +230,6 @@ async function loadScores() {
     return;
   }
 
-  document.getElementById('event-label').textContent = data.title || 'Sommerfest';
   document.getElementById('header-subtitle').textContent = data.subtitle || '';
   if (data.updated)
     document.getElementById('update-time').textContent = 'Zuletzt aktualisiert: ' + data.updated;
@@ -224,13 +258,18 @@ function render(teams) {
 
     setRow(r, team, i, maxPts);
     r.points = team.points;
-    board.appendChild(r.el);   // sortiert die DOM-Reihenfolge
+    (i < TOP_COUNT ? topEl : restEl).appendChild(r.el);   // Top 5 oben fix, Rest in den Scrollbereich
   });
 
   // entfernte Teams rausnehmen
   rows.forEach((r, id) => {
     if (!teams.some(t => t.id === id)) { r.el.remove(); rows.delete(id); }
   });
+
+  const hasRest = teams.length > TOP_COUNT;
+  restSep.style.display  = hasRest ? 'flex' : 'none';
+  restWrap.style.display = hasRest ? 'block' : 'none';
+  fitRest();
 
   // 3) FLIP – von alter zu neuer Position animieren (Eurovision-Slide)
   if (!firstLoad) {
@@ -295,6 +334,32 @@ function showEmpty(msg) {
   const e = document.getElementById('empty');
   e.textContent = msg; e.style.display = 'block';
 }
+
+// Höhe des Rest-Bereichs an den Bildschirm anpassen (füllt bis kurz vors Seitenende)
+function fitRest() {
+  if (restWrap.style.display === 'none') return;
+  const top = restWrap.getBoundingClientRect().top;
+  restWrap.style.maxHeight = Math.max(140, window.innerHeight - top - 110) + 'px';
+}
+window.addEventListener('resize', fitRest);
+
+// Sanftes Auto-Scrollen des Rest-Bereichs – nur wenn er überläuft, mit Pause oben/unten
+let scrollDir = 1, scrollPause = 90;
+function autoScroll() {
+  if (restWrap.style.display !== 'none') {
+    const max = restEl.scrollHeight - restWrap.clientHeight;
+    if (max > 2) {
+      if (scrollPause > 0) { scrollPause--; }
+      else {
+        restWrap.scrollTop += scrollDir * 0.35;
+        if (restWrap.scrollTop >= max)      { restWrap.scrollTop = max; scrollDir = -1; scrollPause = 110; }
+        else if (restWrap.scrollTop <= 0)   { restWrap.scrollTop = 0;   scrollDir =  1; scrollPause = 110; }
+      }
+    }
+  }
+  requestAnimationFrame(autoScroll);
+}
+requestAnimationFrame(autoScroll);
 
 loadScores();
 setInterval(loadScores, 30000);
