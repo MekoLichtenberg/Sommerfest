@@ -22,6 +22,10 @@
     --muted:  rgba(240,238,248,0.45);
   }
 
+  /* Scrollbalken auf der Anzeige ausblenden (Inhalt scrollt weiterhin) */
+  html { scrollbar-width: none; -ms-overflow-style: none; }
+  html::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
   body {
     background: var(--bg);
     color: var(--text);
