@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "23.6.2026, 20:41:11",
+  "updated": "23.6.2026, 20:42:47",
   "teams": [
     {
       "id": "t_gpvykvn",
@@ -52,9 +52,9 @@
     },
     {
       "id": "t_nn6ejrz",
-      "name": "Neues Team",
-      "emoji": "⭐",
-      "points": 0,
+      "name": "Hobbyhorsing",
+      "emoji": "🏇🏿",
+      "points": 2,
       "games": {}
     }
   ]
