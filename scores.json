@@ -1,15 +1,16 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "23.6.2026, 20:10:14",
+  "updated": "23.6.2026, 20:10:15",
   "teams": [
     {
       "id": "t_gpvykvn",
       "name": "Team Goldadler",
       "emoji": "🦅",
-      "points": 5,
+      "points": 8,
       "games": {
-        "dosenwerfen": 5
+        "dosenwerfen": 5,
+        "heisser_draht": 3
       }
     },
     {
