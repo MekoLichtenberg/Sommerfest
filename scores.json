@@ -1,46 +1,80 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "23.6.2026, 20:10:15",
+  "updated": "23.6.2026, 21:05:56",
   "teams": [
     {
       "id": "t_gpvykvn",
       "name": "Team Goldadler",
       "emoji": "🦅",
-      "points": 8,
+      "points": 14,
       "games": {
         "dosenwerfen": 5,
-        "heisser_draht": 3
+        "heisser_draht": 3,
+        "tetris": 0,
+        "zeitnehmen": 5,
+        "sackwerfen": 1
       }
     },
     {
       "id": "t_crm2uw6",
       "name": "Die Stars",
       "emoji": "⭐",
-      "points": 7,
+      "points": 15,
       "games": {
         "dosenwerfen": 5,
-        "heisser_draht": 2
+        "heisser_draht": 2,
+        "tetris": 0,
+        "zeitnehmen": 5,
+        "sackwerfen": 3
       }
     },
     {
       "id": "t_wgcoyh5",
-      "name": "Andreas",
+      "name": "Andreas ist der beste",
       "emoji": "🍪​",
-      "points": 6,
+      "points": 16,
       "games": {
         "dosenwerfen": 5,
-        "heisser_draht": 1
+        "heisser_draht": 1,
+        "tetris": 0,
+        "zeitnehmen": 5,
+        "sackwerfen": 5
       }
     },
     {
       "id": "t_iuv8eez",
-      "name": "Omfe",
-      "emoji": "⭐",
-      "points": 9,
+      "name": "Skullcrushers",
+      "emoji": "💀",
+      "points": 13,
       "games": {
         "dosenwerfen": 5,
-        "heisser_draht": 4
+        "heisser_draht": 4,
+        "tetris": 0,
+        "zeitnehmen": 3,
+        "sackwerfen": 1
+      }
+    },
+    {
+      "id": "t_2iaswzr",
+      "name": "Team Waumpel",
+      "emoji": "🐛",
+      "points": 4,
+      "games": {
+        "tetris": 0,
+        "zeitnehmen": 3,
+        "sackwerfen": 1
+      }
+    },
+    {
+      "id": "t_nn6ejrz",
+      "name": "Hobbyhorsing",
+      "emoji": "🏇🏿",
+      "points": 4,
+      "games": {
+        "tetris": 0,
+        "zeitnehmen": 3,
+        "sackwerfen": 1
       }
     }
   ]
