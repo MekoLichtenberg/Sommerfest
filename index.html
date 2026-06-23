@@ -389,7 +389,7 @@ function autoScroll() {
 requestAnimationFrame(autoScroll);
 
 loadScores();
-setInterval(loadScores, 3000);   // alle 3 s aktualisieren → Animation kommt fast sofort
+setInterval(loadScores, 10000);   // alle 10 s aktualisieren (schont GitHub-/Cloudflare-Limit)
 </script>
 </body>
 </html>
