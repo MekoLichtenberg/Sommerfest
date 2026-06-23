@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "23.6.2026, 20:10:15",
+  "updated": "23.6.2026, 20:41:11",
   "teams": [
     {
       "id": "t_gpvykvn",
@@ -25,7 +25,7 @@
     },
     {
       "id": "t_wgcoyh5",
-      "name": "Andreas",
+      "name": "Andreas ist der beste",
       "emoji": "🍪​",
       "points": 6,
       "games": {
@@ -35,13 +35,27 @@
     },
     {
       "id": "t_iuv8eez",
-      "name": "Omfe",
-      "emoji": "⭐",
+      "name": "Skullcrushers",
+      "emoji": "💀",
       "points": 9,
       "games": {
         "dosenwerfen": 5,
         "heisser_draht": 4
       }
+    },
+    {
+      "id": "t_2iaswzr",
+      "name": "Team Waumpel",
+      "emoji": "🐛",
+      "points": 0,
+      "games": {}
+    },
+    {
+      "id": "t_nn6ejrz",
+      "name": "Neues Team",
+      "emoji": "⭐",
+      "points": 0,
+      "games": {}
     }
   ]
 }
