@@ -1,31 +1,47 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "16.6.2026, 15:33:42",
+  "updated": "23.6.2026, 20:10:15",
   "teams": [
     {
       "id": "t_gpvykvn",
       "name": "Team Goldadler",
       "emoji": "🦅",
-      "points": 3
+      "points": 8,
+      "games": {
+        "dosenwerfen": 5,
+        "heisser_draht": 3
+      }
     },
     {
       "id": "t_crm2uw6",
       "name": "Die Stars",
       "emoji": "⭐",
-      "points": 1
+      "points": 7,
+      "games": {
+        "dosenwerfen": 5,
+        "heisser_draht": 2
+      }
     },
     {
       "id": "t_wgcoyh5",
       "name": "Andreas",
       "emoji": "🍪​",
-      "points": 3
+      "points": 6,
+      "games": {
+        "dosenwerfen": 5,
+        "heisser_draht": 1
+      }
     },
     {
       "id": "t_iuv8eez",
       "name": "Omfe",
       "emoji": "⭐",
-      "points": 2
+      "points": 9,
+      "games": {
+        "dosenwerfen": 5,
+        "heisser_draht": 4
+      }
     }
   ]
 }
