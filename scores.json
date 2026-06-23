@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "23.6.2026, 23:29:56",
+  "updated": "23.6.2026, 23:33:46",
   "teams": [
     {
       "id": "t_gpvykvn",
@@ -59,11 +59,12 @@
       "id": "t_2iaswzr",
       "name": "Team Waumpel",
       "emoji": "🐛",
-      "points": 4,
+      "points": 9,
       "games": {
         "tetris": 0,
         "zeitnehmen": 3,
-        "sackwerfen": 1
+        "sackwerfen": 1,
+        "bogenschiessen": 5
       }
     },
     {
