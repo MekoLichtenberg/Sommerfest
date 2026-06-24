@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "24.6.2026, 20:55:57",
+  "updated": "24.6.2026, 20:55:58",
   "teams": [
     {
       "id": "t_gpvykvn",
@@ -21,9 +21,9 @@
       "id": "t_crm2uw6",
       "name": "Die Stars",
       "emoji": "⭐",
-      "points": 5,
+      "points": 0,
       "games": {
-        "dosenwerfen": 5,
+        "dosenwerfen": 0,
         "heisser_draht": 0,
         "tetris": 0,
         "zeitnehmen": 0,
