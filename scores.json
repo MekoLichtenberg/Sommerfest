@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "24.6.2026, 20:54:18",
+  "updated": "24.6.2026, 20:54:19",
   "teams": [
     {
       "id": "t_gpvykvn",
@@ -100,9 +100,9 @@
       "id": "t_lh0j6ve",
       "name": "Mikado",
       "emoji": "✨",
-      "points": 4,
+      "points": 1,
       "games": {
-        "bogenschiessen": 3,
+        "bogenschiessen": 0,
         "dosenwerfen": 1
       }
     },
