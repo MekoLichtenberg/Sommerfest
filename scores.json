@@ -63,12 +63,12 @@
       "id": "t_2iaswzr",
       "name": "Team Waumpel",
       "emoji": "🐛",
-      "points": 10,
+      "points": 5,
       "games": {
         "tetris": 0,
         "zeitnehmen": 0,
         "sackwerfen": 0,
-        "bogenschiessen": 5,
+        "bogenschiessen": 0,
         "heisser_draht": 0,
         "dosenwerfen": 5
       }
