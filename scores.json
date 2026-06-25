@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "25.6.2026, 11:58:30",
+  "updated": "25.6.2026, 11:58:31",
   "teams": [
     {
       "id": "t_gpvykvn",
@@ -93,11 +93,12 @@
       "id": "t_oyludms",
       "name": "Team A",
       "emoji": "🧼",
-      "points": 9,
+      "points": 14,
       "games": {
         "bogenschiessen": 0,
         "dosenwerfen": 5,
-        "fussballslalom": 4
+        "fussballslalom": 4,
+        "kaesespiel": 5
       }
     },
     {
