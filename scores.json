@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "25.6.2026, 11:58:40",
+  "updated": "25.6.2026, 11:58:42",
   "teams": [
     {
       "id": "t_gpvykvn",
@@ -37,7 +37,7 @@
       "id": "t_wgcoyh5",
       "name": "Andreas ist der beste",
       "emoji": "🍪​",
-      "points": 8,
+      "points": 13,
       "games": {
         "dosenwerfen": 3,
         "heisser_draht": 0,
@@ -45,7 +45,8 @@
         "zeitnehmen": 0,
         "sackwerfen": 0,
         "bogenschiessen": 0,
-        "kaesespiel": 5
+        "kaesespiel": 5,
+        "fussballslalom": 5
       }
     },
     {
