@@ -2,16 +2,17 @@ const GH_API = 'https://api.github.com';
 const FILE = 'scores.json';
 
 const GAME_LABELS = {
-  dosenwerfen:    'Dosenwerfen',
-  heisser_draht:  'Heißer Draht',
-  sackwerfen:     'Sackwerfen',
-  zeitnehmen:     'Zeitnehmen',
-  kaesespiel:     'Käsespiel',
-  fussballslalom: 'Fußballslalom',
-  balancierfeder: 'Balancierfeder',
-  bogenschiessen: 'Bogenschießen',
-  spinnennetz:    'Spinnennetz',
-  tetris:         'Tetris',
+  dosenwerfen:              'Dosenwerfen',
+  heisser_draht:           'Heißer Draht',
+  sackwerfen:              'Sackwerfen',
+  quietscheentchen_shuffle:'Quietscheentchen-Shuffle',
+  kaesespiel:              'Käsespiel',
+  fussballslalom:          'Fußballslalom',
+  balancierfeder:          'Balancierfeder',
+  bogenschiessen:          'Bogenschießen',
+  spinnennetz:             'Spinnennetz',
+  tetris:                  'Tetris',
+  dummi_ziehen:            'Dummi ziehen',
 };
 
 function gameFromCode(code, env) {
