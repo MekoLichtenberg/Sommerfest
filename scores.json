@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "6.7.2026, 12:27:42",
+  "updated": "6.7.2026, 12:27:55",
   "teams": [
     {
       "id": "t_gpvykvn",
@@ -22,7 +22,7 @@
       "id": "t_crm2uw6",
       "name": "Die Stars",
       "emoji": "⭐",
-      "points": 11,
+      "points": 16,
       "games": {
         "dosenwerfen": 3,
         "heisser_draht": 0,
@@ -30,8 +30,10 @@
         "zeitnehmen": 0,
         "sackwerfen": 0,
         "bogenschiessen": 3,
-        "kaesespiel": 5
-      }
+        "kaesespiel": 5,
+        "balancierfeder": 5
+      },
+      "ts": 1783333675898
     },
     {
       "id": "t_wgcoyh5",
