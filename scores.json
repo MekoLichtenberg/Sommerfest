@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "6.7.2026, 12:27:55",
+  "updated": "6.7.2026, 12:28:05",
   "teams": [
     {
       "id": "t_gpvykvn",
@@ -117,12 +117,14 @@
       "id": "t_lh0j6ve",
       "name": "Mikado",
       "emoji": "✨",
-      "points": 6,
+      "points": 9,
       "games": {
         "bogenschiessen": 0,
         "dosenwerfen": 1,
-        "kaesespiel": 5
-      }
+        "kaesespiel": 5,
+        "balancierfeder": 3
+      },
+      "ts": 1783333685995
     },
     {
       "id": "t_jhj5mei",
