@@ -1,138 +1,13 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "6.7.2026, 12:28:09",
+  "updated": "8.7.2026, 12:27:10",
   "teams": [
-    {
-      "id": "t_gpvykvn",
-      "name": "Team Goldadler",
-      "emoji": "🦅",
-      "points": 5,
-      "games": {
-        "dosenwerfen": 1,
-        "heisser_draht": 0,
-        "tetris": 0,
-        "zeitnehmen": 0,
-        "sackwerfen": 0,
-        "bogenschiessen": 0,
-        "kaesespiel": 4
-      }
-    },
-    {
-      "id": "t_crm2uw6",
-      "name": "Die Stars",
-      "emoji": "⭐",
-      "points": 16,
-      "games": {
-        "dosenwerfen": 3,
-        "heisser_draht": 0,
-        "tetris": 0,
-        "zeitnehmen": 0,
-        "sackwerfen": 0,
-        "bogenschiessen": 3,
-        "kaesespiel": 5,
-        "balancierfeder": 5
-      },
-      "ts": 1783333675898
-    },
-    {
-      "id": "t_wgcoyh5",
-      "name": "Andreas ist der beste",
-      "emoji": "🍪​",
-      "points": 16,
-      "games": {
-        "dosenwerfen": 3,
-        "heisser_draht": 0,
-        "tetris": 0,
-        "zeitnehmen": 0,
-        "sackwerfen": 0,
-        "bogenschiessen": 0,
-        "kaesespiel": 5,
-        "fussballslalom": 5,
-        "balancierfeder": 3
-      },
-      "ts": 1783333662436
-    },
-    {
-      "id": "t_iuv8eez",
-      "name": "Skullcrushers",
-      "emoji": "💀",
-      "points": 10,
-      "games": {
-        "dosenwerfen": 1,
-        "heisser_draht": 0,
-        "tetris": 0,
-        "zeitnehmen": 0,
-        "sackwerfen": 0,
-        "bogenschiessen": 0,
-        "kaesespiel": 5,
-        "balancierfeder": 4
-      },
-      "ts": 1783333687338
-    },
-    {
-      "id": "t_2iaswzr",
-      "name": "Team Waumpel",
-      "emoji": "🐛",
-      "points": 15,
-      "games": {
-        "tetris": 0,
-        "zeitnehmen": 0,
-        "sackwerfen": 0,
-        "bogenschiessen": 3,
-        "heisser_draht": 0,
-        "dosenwerfen": 3,
-        "fussballslalom": 4,
-        "kaesespiel": 5
-      }
-    },
-    {
-      "id": "t_nn6ejrz",
-      "name": "Hobbyhorsing",
-      "emoji": "🏇🏿",
-      "points": 10,
-      "games": {
-        "tetris": 0,
-        "zeitnehmen": 0,
-        "sackwerfen": 0,
-        "bogenschiessen": 0,
-        "dosenwerfen": 1,
-        "kaesespiel": 3,
-        "fussballslalom": 5,
-        "balancierfeder": 1
-      },
-      "ts": 1783333659703
-    },
-    {
-      "id": "t_oyludms",
-      "name": "Team A",
-      "emoji": "🧼",
-      "points": 15,
-      "games": {
-        "bogenschiessen": 4,
-        "dosenwerfen": 2,
-        "fussballslalom": 4,
-        "kaesespiel": 5
-      }
-    },
-    {
-      "id": "t_lh0j6ve",
-      "name": "Mikado",
-      "emoji": "✨",
-      "points": 9,
-      "games": {
-        "bogenschiessen": 0,
-        "dosenwerfen": 1,
-        "kaesespiel": 5,
-        "balancierfeder": 3
-      },
-      "ts": 1783333685995
-    },
     {
       "id": "t_jhj5mei",
       "name": "Speck eV",
       "emoji": "🥓",
-      "points": 13,
+      "points": 0,
       "games": {
         "bogenschiessen": 0,
         "dosenwerfen": 2,
@@ -140,7 +15,7 @@
         "fussballslalom": 2,
         "balancierfeder": 4
       },
-      "ts": 1783333689013
+      "ts": 1783506430269
     }
   ]
 }
