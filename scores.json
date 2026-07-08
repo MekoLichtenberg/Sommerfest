@@ -1,18 +1,19 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 14:46:03",
+  "updated": "8.7.2026, 14:46:10",
   "teams": [
     {
       "id": "t_x73p3zo",
       "name": "Powergirls",
       "emoji": "💪",
-      "points": 9,
+      "points": 13,
       "games": {
         "sackwerfen": 4,
-        "kaesespiel": 5
+        "kaesespiel": 5,
+        "dosenwerfen": 4
       },
-      "ts": 1783514623925
+      "ts": 1783514770049
     },
     {
       "id": "t_a23hnzh",
