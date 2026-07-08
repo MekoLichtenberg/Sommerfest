@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 16:20:48",
+  "updated": "8.7.2026, 16:21:14",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -485,7 +485,7 @@
       "id": "t_wjjw5e7",
       "name": "Team Mohammed",
       "emoji": "👌",
-      "points": 15,
+      "points": 19,
       "games": {
         "dosenwerfen": 3,
         "heisser_draht": 1,
@@ -493,9 +493,10 @@
         "balancierfeder": 2,
         "kaesespiel": 1,
         "spinnennetz": 3,
-        "tetris": 3
+        "tetris": 3,
+        "sackwerfen": 4
       },
-      "ts": 1783520386762
+      "ts": 1783520474674
     },
     {
       "id": "t_dcn2b33",
