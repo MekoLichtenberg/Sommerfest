@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 16:14:28",
+  "updated": "8.7.2026, 16:14:33",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -225,20 +225,20 @@
       "id": "t_iqqg66u",
       "name": "Die 67 Gruppe",
       "emoji": "6️⃣7️⃣",
-      "points": 0,
+      "points": 26,
       "games": {
         "dosenwerfen": 3,
         "heisser_draht": 1,
         "quietscheentchen_shuffle": 2,
         "sackwerfen": 3,
         "fussballslalom": 3,
-        "balancierfeder": 5,
+        "balancierfeder": 4,
         "dummi_ziehen": 2,
         "bogenschiessen": 3,
         "spinnennetz": 2,
         "tetris": 3
       },
-      "ts": 1783519405540
+      "ts": 1783520073282
     },
     {
       "id": "t_zfktkkf",
