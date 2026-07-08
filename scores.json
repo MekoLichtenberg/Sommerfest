@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:05:43",
+  "updated": "8.7.2026, 15:06:03",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -141,15 +141,16 @@
       "id": "t_t7n63cp",
       "name": "Ash",
       "emoji": "🏳️‍🌈",
-      "points": 0,
+      "points": 20,
       "games": {
         "dosenwerfen": 3,
         "spinnennetz": 4,
         "tetris": 3,
         "sackwerfen": 2,
-        "fussballslalom": 3
+        "fussballslalom": 3,
+        "bogenschiessen": 5
       },
-      "ts": 1783515541962
+      "ts": 1783515963438
     },
     {
       "id": "t_popk7sp",
