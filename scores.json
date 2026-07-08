@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:49:18",
+  "updated": "8.7.2026, 15:49:19",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -452,9 +452,11 @@
       "id": "t_dcn2b33",
       "name": "Juli",
       "emoji": "🌙",
-      "points": 0,
-      "games": {},
-      "ts": 1783518332510
+      "points": 2,
+      "games": {
+        "fussballslalom": 2
+      },
+      "ts": 1783518559974
     },
     {
       "id": "t_o1e7mc7",
