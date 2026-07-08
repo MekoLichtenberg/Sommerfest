@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 13:24:36",
+  "updated": "8.7.2026, 14:04:17",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -18,6 +18,14 @@
       "points": 0,
       "games": {},
       "ts": 1783509876690
+    },
+    {
+      "id": "t_fyb2ni6",
+      "name": "Hamudi Habibi",
+      "emoji": "✨",
+      "points": 0,
+      "games": {},
+      "ts": 1783512257837
     }
   ]
 }
