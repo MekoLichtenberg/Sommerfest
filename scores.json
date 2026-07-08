@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 16:38:41",
+  "updated": "8.7.2026, 16:38:42",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -420,13 +420,13 @@
       "id": "t_h3k0wca",
       "name": "Dembélé 2",
       "emoji": "🌚",
-      "points": 30,
+      "points": 29,
       "games": {
         "dosenwerfen": 4,
         "fussballslalom": 5,
         "dummi_ziehen": 2,
         "bogenschiessen": 1,
-        "kaesespiel": 2,
+        "kaesespiel": 1,
         "quietscheentchen_shuffle": 3,
         "balancierfeder": 5,
         "sackwerfen": 1,
@@ -434,7 +434,7 @@
         "tetris": 3,
         "heisser_draht": 2
       },
-      "ts": 1783521521463
+      "ts": 1783521522612
     },
     {
       "id": "t_k4m4y8c",
