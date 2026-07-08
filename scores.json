@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 14:43:43",
+  "updated": "8.7.2026, 14:43:49",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -51,11 +51,12 @@
       "id": "t_r2slyob",
       "name": "Team Ronaldo",
       "emoji": "⚽️",
-      "points": 2,
+      "points": 6,
       "games": {
-        "heisser_draht": 2
+        "heisser_draht": 2,
+        "fussballslalom": 4
       },
-      "ts": 1783514483789
+      "ts": 1783514629824
     },
     {
       "id": "t_k89cz6r",
