@@ -1,21 +1,21 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 12:27:10",
+  "updated": "8.7.2026, 12:30:08",
   "teams": [
     {
       "id": "t_jhj5mei",
       "name": "Speck eV",
       "emoji": "🥓",
-      "points": 0,
+      "points": 11,
       "games": {
         "bogenschiessen": 0,
-        "dosenwerfen": 2,
+        "dosenwerfen": 0,
         "kaesespiel": 5,
         "fussballslalom": 2,
         "balancierfeder": 4
       },
-      "ts": 1783506430269
+      "ts": 1783506608034
     }
   ]
 }
