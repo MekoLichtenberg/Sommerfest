@@ -1,13 +1,13 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 16:03:11",
+  "updated": "8.7.2026, 16:03:25",
   "teams": [
     {
       "id": "t_x73p3zo",
       "name": "Powergirls",
       "emoji": "💪",
-      "points": 29,
+      "points": 0,
       "games": {
         "sackwerfen": 4,
         "kaesespiel": 5,
@@ -21,13 +21,13 @@
         "balancierfeder": 1,
         "spinnennetz": 2
       },
-      "ts": 1783518711684
+      "ts": 1783519405540
     },
     {
       "id": "t_a23hnzh",
       "name": "Sockengang",
       "emoji": "🧦",
-      "points": 35,
+      "points": 0,
       "games": {
         "sackwerfen": 0,
         "spinnennetz": 4,
@@ -41,13 +41,13 @@
         "heisser_draht": 4,
         "kaesespiel": 3
       },
-      "ts": 1783518886616
+      "ts": 1783519405540
     },
     {
       "id": "t_fyb2ni6",
       "name": "Hamudi Habibi",
       "emoji": "✨",
-      "points": 41,
+      "points": 0,
       "games": {
         "fussballslalom": 5,
         "dummi_ziehen": 5,
@@ -61,13 +61,13 @@
         "tetris": 3,
         "spinnennetz": 2
       },
-      "ts": 1783518594782
+      "ts": 1783519405540
     },
     {
       "id": "t_b39el29",
       "name": "Die Hardcores",
       "emoji": "👑",
-      "points": 41,
+      "points": 0,
       "games": {
         "dummi_ziehen": 5,
         "balancierfeder": 5,
@@ -81,7 +81,7 @@
         "bogenschiessen": 2,
         "heisser_draht": 3
       },
-      "ts": 1783519089789
+      "ts": 1783519405540
     },
     {
       "id": "t_r2slyob",
@@ -107,7 +107,7 @@
       "id": "t_k89cz6r",
       "name": "Team Regina",
       "emoji": "🤣",
-      "points": 43,
+      "points": 0,
       "games": {
         "sackwerfen": 5,
         "fussballslalom": 5,
@@ -121,13 +121,13 @@
         "tetris": 3,
         "kaesespiel": 5
       },
-      "ts": 1783518782590
+      "ts": 1783519405540
     },
     {
       "id": "t_f29tacd",
       "name": "Die Holzis",
       "emoji": "🪵",
-      "points": 44,
+      "points": 0,
       "games": {
         "balancierfeder": 5,
         "tetris": 3,
@@ -141,13 +141,13 @@
         "heisser_draht": 5,
         "spinnennetz": 5
       },
-      "ts": 1783519000452
+      "ts": 1783519405540
     },
     {
       "id": "t_5bmoxha",
       "name": "JFE - Jung Frech Elegant",
       "emoji": "👯",
-      "points": 29,
+      "points": 0,
       "games": {
         "dosenwerfen": 4,
         "fussballslalom": 4,
@@ -158,13 +158,13 @@
         "quietscheentchen_shuffle": 1,
         "tetris": 3
       },
-      "ts": 1783518667537
+      "ts": 1783519405540
     },
     {
       "id": "t_xgg9pqh",
       "name": "Die Drei Pia Olymp Mädchen",
       "emoji": "❤️",
-      "points": 34,
+      "points": 0,
       "games": {
         "bogenschiessen": 4,
         "dummi_ziehen": 2,
@@ -178,13 +178,13 @@
         "heisser_draht": 2,
         "quietscheentchen_shuffle": 2
       },
-      "ts": 1783518561371
+      "ts": 1783519405540
     },
     {
       "id": "t_t7n63cp",
       "name": "Ash",
       "emoji": "🏳️‍🌈",
-      "points": 38,
+      "points": 0,
       "games": {
         "dosenwerfen": 3,
         "spinnennetz": 4,
@@ -197,13 +197,13 @@
         "heisser_draht": 4,
         "kaesespiel": 5
       },
-      "ts": 1783518531247
+      "ts": 1783519405540
     },
     {
       "id": "t_popk7sp",
       "name": "Carzudel",
       "emoji": "👽",
-      "points": 34,
+      "points": 0,
       "games": {
         "quietscheentchen_shuffle": 3,
         "balancierfeder": 3,
@@ -217,13 +217,13 @@
         "heisser_draht": 2,
         "kaesespiel": 5
       },
-      "ts": 1783519140728
+      "ts": 1783519405540
     },
     {
       "id": "t_iqqg66u",
       "name": "Die 67 Gruppe",
       "emoji": "6️⃣7️⃣",
-      "points": 27,
+      "points": 0,
       "games": {
         "dosenwerfen": 3,
         "heisser_draht": 1,
@@ -236,13 +236,13 @@
         "spinnennetz": 2,
         "tetris": 3
       },
-      "ts": 1783518556290
+      "ts": 1783519405540
     },
     {
       "id": "t_zfktkkf",
       "name": "Die Gummibärchenbande",
       "emoji": "🧸",
-      "points": 28,
+      "points": 0,
       "games": {
         "dosenwerfen": 3,
         "heisser_draht": 1,
@@ -256,13 +256,13 @@
         "balancierfeder": 3,
         "tetris": 5
       },
-      "ts": 1783518575911
+      "ts": 1783519405540
     },
     {
       "id": "t_12770l4",
       "name": "BFC Gang",
       "emoji": "🫆",
-      "points": 20,
+      "points": 0,
       "games": {
         "dosenwerfen": 3,
         "kaesespiel": 5,
@@ -274,7 +274,7 @@
         "bogenschiessen": 1,
         "heisser_draht": 2
       },
-      "ts": 1783518535327
+      "ts": 1783519405540
     },
     {
       "id": "t_vj39rio",
@@ -297,7 +297,7 @@
       "id": "t_pbpt2bu",
       "name": "Stawberry-Matcha",
       "emoji": "🍓",
-      "points": 27,
+      "points": 0,
       "games": {
         "sackwerfen": 4,
         "dummi_ziehen": 2,
@@ -309,13 +309,13 @@
         "fussballslalom": 2,
         "kaesespiel": 2
       },
-      "ts": 1783518876981
+      "ts": 1783519405540
     },
     {
       "id": "t_jha3xgz",
       "name": "Dembélé",
       "emoji": "🌝",
-      "points": 21,
+      "points": 0,
       "games": {
         "dosenwerfen": 4,
         "fussballslalom": 4,
@@ -325,13 +325,13 @@
         "quietscheentchen_shuffle": 2,
         "balancierfeder": 5
       },
-      "ts": 1783519376138
+      "ts": 1783519405540
     },
     {
       "id": "t_orkm46z",
       "name": "Katseye",
       "emoji": "💐",
-      "points": 15,
+      "points": 0,
       "games": {
         "dosenwerfen": 2,
         "heisser_draht": 3,
@@ -341,13 +341,13 @@
         "spinnennetz": 3,
         "tetris": 3
       },
-      "ts": 1783519353299
+      "ts": 1783519405540
     },
     {
       "id": "t_a5odfcw",
       "name": "Neymar",
       "emoji": "🐆",
-      "points": 31,
+      "points": 0,
       "games": {
         "heisser_draht": 1,
         "dosenwerfen": 4,
@@ -360,13 +360,13 @@
         "sackwerfen": 3,
         "tetris": 3
       },
-      "ts": 1783518960191
+      "ts": 1783519405540
     },
     {
       "id": "t_09i7yrz",
       "name": "Onyx",
       "emoji": "🦍",
-      "points": 22,
+      "points": 0,
       "games": {
         "dosenwerfen": 4,
         "quietscheentchen_shuffle": 3,
@@ -378,13 +378,13 @@
         "sackwerfen": 4,
         "tetris": 3
       },
-      "ts": 1783519160940
+      "ts": 1783519405540
     },
     {
       "id": "t_71dd45n",
       "name": "Elsa",
       "emoji": "🐬",
-      "points": 20,
+      "points": 0,
       "games": {
         "dosenwerfen": 4,
         "heisser_draht": 1,
@@ -395,13 +395,13 @@
         "fussballslalom": 2,
         "bogenschiessen": 3
       },
-      "ts": 1783518589441
+      "ts": 1783519405540
     },
     {
       "id": "t_h3k0wca",
       "name": "Dembélé 2",
       "emoji": "🌚",
-      "points": 22,
+      "points": 0,
       "games": {
         "dosenwerfen": 4,
         "fussballslalom": 5,
@@ -412,13 +412,13 @@
         "balancierfeder": 5,
         "sackwerfen": 1
       },
-      "ts": 1783519386597
+      "ts": 1783519405540
     },
     {
       "id": "t_k4m4y8c",
       "name": "Team Coco",
       "emoji": "⭐",
-      "points": 21,
+      "points": 0,
       "games": {
         "dosenwerfen": 4,
         "fussballslalom": 3,
@@ -429,13 +429,13 @@
         "bogenschiessen": 3,
         "dummi_ziehen": 2
       },
-      "ts": 1783518887866
+      "ts": 1783519405540
     },
     {
       "id": "t_7r2qr11",
       "name": "Roblox",
       "emoji": "🤖",
-      "points": 14,
+      "points": 0,
       "games": {
         "dosenwerfen": 1,
         "fussballslalom": 1,
@@ -445,13 +445,13 @@
         "quietscheentchen_shuffle": 1,
         "bogenschiessen": 2
       },
-      "ts": 1783519391922
+      "ts": 1783519405540
     },
     {
       "id": "t_q8o8euh",
       "name": "Daniella",
       "emoji": "⁶🤷⁷",
-      "points": 17,
+      "points": 0,
       "games": {
         "dosenwerfen": 4,
         "quietscheentchen_shuffle": 1,
@@ -460,13 +460,13 @@
         "sackwerfen": 3,
         "fussballslalom": 3
       },
-      "ts": 1783518543124
+      "ts": 1783519405540
     },
     {
       "id": "t_wjjw5e7",
       "name": "Team Mohammed",
       "emoji": "👌",
-      "points": 9,
+      "points": 0,
       "games": {
         "dosenwerfen": 3,
         "heisser_draht": 1,
@@ -474,29 +474,45 @@
         "balancierfeder": 2,
         "kaesespiel": 1
       },
-      "ts": 1783519173608
+      "ts": 1783519405540
     },
     {
       "id": "t_dcn2b33",
       "name": "Juli",
       "emoji": "🌙",
-      "points": 10,
+      "points": 0,
       "games": {
         "fussballslalom": 2,
         "bogenschiessen": 3,
         "dummi_ziehen": 5
       },
-      "ts": 1783519309216
+      "ts": 1783519405540
     },
     {
       "id": "t_o1e7mc7",
       "name": "Alea",
       "emoji": "💋",
-      "points": 4,
+      "points": 0,
       "games": {
         "dosenwerfen": 4
       },
-      "ts": 1783518980029
+      "ts": 1783519405540
+    },
+    {
+      "id": "t_9cinfn5",
+      "name": "Fiftyone",
+      "emoji": "🐺",
+      "points": 0,
+      "games": {},
+      "ts": 1783519405540
+    },
+    {
+      "id": "t_twephcb",
+      "name": "Ufo",
+      "emoji": "🛸",
+      "points": 0,
+      "games": {},
+      "ts": 1783519405540
     }
   ]
 }
