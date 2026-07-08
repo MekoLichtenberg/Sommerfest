@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:02:52",
+  "updated": "8.7.2026, 15:03:16",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -254,9 +254,11 @@
       "id": "t_a5odfcw",
       "name": "Neymar",
       "emoji": "🐆",
-      "points": 0,
-      "games": {},
-      "ts": 1783515345968
+      "points": 1,
+      "games": {
+        "heisser_draht": 1
+      },
+      "ts": 1783515796151
     },
     {
       "id": "t_09i7yrz",
