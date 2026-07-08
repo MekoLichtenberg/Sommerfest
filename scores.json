@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:14:44",
+  "updated": "8.7.2026, 15:14:48",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -298,12 +298,13 @@
       "id": "t_09i7yrz",
       "name": "Onyx",
       "emoji": "🦍",
-      "points": 7,
+      "points": 9,
       "games": {
         "dosenwerfen": 4,
-        "quietscheentchen_shuffle": 3
+        "quietscheentchen_shuffle": 3,
+        "kaesespiel": 2
       },
-      "ts": 1783516075091
+      "ts": 1783516488736
     },
     {
       "id": "t_71dd45n",
