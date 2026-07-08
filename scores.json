@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 14:45:39",
+  "updated": "8.7.2026, 14:46:03",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -29,12 +29,13 @@
       "id": "t_fyb2ni6",
       "name": "Hamudi Habibi",
       "emoji": "✨",
-      "points": 10,
+      "points": 14,
       "games": {
         "fussballslalom": 5,
-        "dummi_ziehen": 5
+        "dummi_ziehen": 5,
+        "bogenschiessen": 4
       },
-      "ts": 1783514520833
+      "ts": 1783514763819
     },
     {
       "id": "t_b39el29",
