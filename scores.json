@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 16:22:01",
+  "updated": "8.7.2026, 16:22:02",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -147,7 +147,7 @@
       "id": "t_5bmoxha",
       "name": "JFE - Jung Frech Elegant",
       "emoji": "👯",
-      "points": 37,
+      "points": 41,
       "games": {
         "dosenwerfen": 4,
         "fussballslalom": 4,
@@ -158,9 +158,10 @@
         "quietscheentchen_shuffle": 1,
         "tetris": 3,
         "spinnennetz": 4,
-        "bogenschiessen": 4
+        "bogenschiessen": 4,
+        "heisser_draht": 4
       },
-      "ts": 1783520160873
+      "ts": 1783520522818
     },
     {
       "id": "t_xgg9pqh",
