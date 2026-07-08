@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 16:16:06",
+  "updated": "8.7.2026, 16:16:09",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -431,7 +431,7 @@
       "id": "t_k4m4y8c",
       "name": "Team Coco",
       "emoji": "⭐",
-      "points": 26,
+      "points": 29,
       "games": {
         "dosenwerfen": 4,
         "fussballslalom": 3,
@@ -441,9 +441,10 @@
         "heisser_draht": 1,
         "bogenschiessen": 3,
         "dummi_ziehen": 2,
-        "kaesespiel": 5
+        "kaesespiel": 5,
+        "tetris": 3
       },
-      "ts": 1783520112955
+      "ts": 1783520169332
     },
     {
       "id": "t_7r2qr11",
