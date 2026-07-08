@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:25:11",
+  "updated": "8.7.2026, 15:25:16",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -240,16 +240,17 @@
       "id": "t_12770l4",
       "name": "BFC Gang",
       "emoji": "🫆",
-      "points": 17,
+      "points": 18,
       "games": {
         "dosenwerfen": 4,
         "kaesespiel": 5,
         "balancierfeder": 1,
         "fussballslalom": 3,
         "dummi_ziehen": 2,
-        "quietscheentchen_shuffle": 2
+        "quietscheentchen_shuffle": 2,
+        "sackwerfen": 1
       },
-      "ts": 1783516970877
+      "ts": 1783517116270
     },
     {
       "id": "t_vj39rio",
