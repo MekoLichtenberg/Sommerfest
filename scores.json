@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 14:38:04",
+  "updated": "8.7.2026, 14:39:05",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -105,9 +105,11 @@
       "id": "t_iqqg66u",
       "name": "Die 67 Gruppe",
       "emoji": "6️⃣7️⃣",
-      "points": 0,
-      "games": {},
-      "ts": 1783513236025
+      "points": 3,
+      "games": {
+        "dosenwerfen": 3
+      },
+      "ts": 1783514345333
     },
     {
       "id": "t_zfktkkf",
