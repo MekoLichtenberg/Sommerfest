@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:38:07",
+  "updated": "8.7.2026, 15:38:09",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -398,14 +398,14 @@
       "id": "t_7r2qr11",
       "name": "Roblox",
       "emoji": "🤖",
-      "points": 7,
+      "points": 6,
       "games": {
-        "dosenwerfen": 2,
+        "dosenwerfen": 1,
         "fussballslalom": 1,
         "sackwerfen": 1,
         "spinnennetz": 3
       },
-      "ts": 1783517887967
+      "ts": 1783517889794
     },
     {
       "id": "t_q8o8euh",
