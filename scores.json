@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 14:36:51",
+  "updated": "8.7.2026, 14:37:03",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -105,9 +105,11 @@
       "id": "t_zfktkkf",
       "name": "Die Gummibärchenbande",
       "emoji": "🧸",
-      "points": 0,
-      "games": {},
-      "ts": 1783513344265
+      "points": 3,
+      "games": {
+        "dosenwerfen": 3
+      },
+      "ts": 1783514223740
     },
     {
       "id": "t_12770l4",
