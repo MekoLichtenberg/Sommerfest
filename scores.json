@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:38:14",
+  "updated": "8.7.2026, 15:38:18",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -411,13 +411,14 @@
       "id": "t_q8o8euh",
       "name": "Daniella",
       "emoji": "⁶🤷⁷",
-      "points": 8,
+      "points": 11,
       "games": {
         "dosenwerfen": 4,
         "quietscheentchen_shuffle": 1,
-        "balancierfeder": 3
+        "balancierfeder": 3,
+        "tetris": 3
       },
-      "ts": 1783517670897
+      "ts": 1783517898070
     },
     {
       "id": "t_wjjw5e7",
