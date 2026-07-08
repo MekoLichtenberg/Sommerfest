@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 14:22:24",
+  "updated": "8.7.2026, 14:36:51",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -108,6 +108,14 @@
       "points": 0,
       "games": {},
       "ts": 1783513344265
+    },
+    {
+      "id": "t_12770l4",
+      "name": "BFC Gang",
+      "emoji": "🫆",
+      "points": 0,
+      "games": {},
+      "ts": 1783514211851
     }
   ]
 }
