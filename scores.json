@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 14:15:41",
+  "updated": "8.7.2026, 14:18:28",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -84,6 +84,14 @@
       "points": 0,
       "games": {},
       "ts": 1783512941115
+    },
+    {
+      "id": "t_popk7sp",
+      "name": "Carzudel",
+      "emoji": "👽",
+      "points": 0,
+      "games": {},
+      "ts": 1783513108423
     }
   ]
 }
