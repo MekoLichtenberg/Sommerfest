@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:00:03",
+  "updated": "8.7.2026, 15:00:08",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -214,11 +214,12 @@
       "id": "t_pbpt2bu",
       "name": "Stawberry-Matcha",
       "emoji": "🍓",
-      "points": 0,
+      "points": 6,
       "games": {
-        "sackwerfen": 4
+        "sackwerfen": 4,
+        "dummi_ziehen": 2
       },
-      "ts": 1783515345968
+      "ts": 1783515608940
     },
     {
       "id": "t_jha3xgz",
