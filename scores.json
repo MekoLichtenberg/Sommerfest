@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 14:13:53",
+  "updated": "8.7.2026, 14:14:26",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -68,6 +68,14 @@
       "points": 0,
       "games": {},
       "ts": 1783512833269
+    },
+    {
+      "id": "t_xgg9pqh",
+      "name": "Die Drei Pia Olymp Mädchen",
+      "emoji": "❤️",
+      "points": 0,
+      "games": {},
+      "ts": 1783512866090
     }
   ]
 }
