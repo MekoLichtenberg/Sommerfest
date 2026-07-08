@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:35:02",
+  "updated": "8.7.2026, 15:35:27",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -383,14 +383,15 @@
       "id": "t_k4m4y8c",
       "name": "Team Coco",
       "emoji": "⭐",
-      "points": 0,
+      "points": 15,
       "games": {
         "dosenwerfen": 4,
         "fussballslalom": 3,
         "sackwerfen": 4,
-        "balancierfeder": 2
+        "balancierfeder": 2,
+        "quietscheentchen_shuffle": 2
       },
-      "ts": 1783517578221
+      "ts": 1783517727939
     },
     {
       "id": "t_7r2qr11",
