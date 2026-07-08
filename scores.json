@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 16:26:51",
+  "updated": "8.7.2026, 16:27:36",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -509,7 +509,7 @@
       "id": "t_dcn2b33",
       "name": "Juli",
       "emoji": "🌙",
-      "points": 30,
+      "points": 35,
       "games": {
         "fussballslalom": 2,
         "bogenschiessen": 3,
@@ -518,9 +518,10 @@
         "dosenwerfen": 4,
         "heisser_draht": 4,
         "balancierfeder": 5,
-        "kaesespiel": 5
+        "kaesespiel": 5,
+        "sackwerfen": 5
       },
-      "ts": 1783520756387
+      "ts": 1783520856025
     },
     {
       "id": "t_o1e7mc7",
