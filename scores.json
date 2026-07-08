@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 16:16:22",
+  "updated": "8.7.2026, 16:16:24",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -67,10 +67,10 @@
       "id": "t_b39el29",
       "name": "Die Hardcores",
       "emoji": "👑",
-      "points": 0,
+      "points": 40,
       "games": {
         "dummi_ziehen": 5,
-        "balancierfeder": 5,
+        "balancierfeder": 4,
         "dosenwerfen": 3,
         "kaesespiel": 5,
         "fussballslalom": 5,
@@ -81,7 +81,7 @@
         "bogenschiessen": 2,
         "heisser_draht": 3
       },
-      "ts": 1783519405540
+      "ts": 1783520184377
     },
     {
       "id": "t_r2slyob",
