@@ -1,13 +1,13 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 14:58:46",
+  "updated": "8.7.2026, 14:59:01",
   "teams": [
     {
       "id": "t_x73p3zo",
       "name": "Powergirls",
       "emoji": "💪",
-      "points": 18,
+      "points": 0,
       "games": {
         "sackwerfen": 4,
         "kaesespiel": 5,
@@ -15,7 +15,7 @@
         "bogenschiessen": 4,
         "quietscheentchen_shuffle": 1
       },
-      "ts": 1783515462445
+      "ts": 1783515541962
     },
     {
       "id": "t_a23hnzh",
@@ -114,7 +114,7 @@
       "id": "t_xgg9pqh",
       "name": "Die Drei Pia Olymp Mädchen",
       "emoji": "❤️",
-      "points": 19,
+      "points": 0,
       "games": {
         "bogenschiessen": 4,
         "dummi_ziehen": 2,
@@ -123,13 +123,13 @@
         "spinnennetz": 2,
         "tetris": 3
       },
-      "ts": 1783515501586
+      "ts": 1783515541962
     },
     {
       "id": "t_t7n63cp",
       "name": "Ash",
       "emoji": "🏳️‍🌈",
-      "points": 15,
+      "points": 0,
       "games": {
         "dosenwerfen": 3,
         "spinnennetz": 4,
@@ -137,7 +137,7 @@
         "sackwerfen": 2,
         "fussballslalom": 3
       },
-      "ts": 1783515466985
+      "ts": 1783515541962
     },
     {
       "id": "t_popk7sp",
@@ -159,7 +159,7 @@
       "id": "t_iqqg66u",
       "name": "Die 67 Gruppe",
       "emoji": "6️⃣7️⃣",
-      "points": 12,
+      "points": 0,
       "games": {
         "dosenwerfen": 3,
         "heisser_draht": 1,
@@ -167,7 +167,7 @@
         "sackwerfen": 3,
         "fussballslalom": 3
       },
-      "ts": 1783515526371
+      "ts": 1783515541962
     },
     {
       "id": "t_zfktkkf",
@@ -228,11 +228,11 @@
       "id": "t_orkm46z",
       "name": "Katseye",
       "emoji": "💐",
-      "points": 2,
+      "points": 0,
       "games": {
         "dosenwerfen": 2
       },
-      "ts": 1783515496123
+      "ts": 1783515541962
     },
     {
       "id": "t_a5odfcw",
@@ -254,11 +254,19 @@
       "id": "t_71dd45n",
       "name": "Elsa",
       "emoji": "🐬",
-      "points": 4,
+      "points": 0,
       "games": {
         "dosenwerfen": 4
       },
-      "ts": 1783515509145
+      "ts": 1783515541962
+    },
+    {
+      "id": "t_h3k0wca",
+      "name": "Dembélé 2",
+      "emoji": "🌚",
+      "points": 0,
+      "games": {},
+      "ts": 1783515541962
     }
   ]
 }
