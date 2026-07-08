@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:54:32",
+  "updated": "8.7.2026, 15:54:36",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -293,7 +293,7 @@
       "id": "t_pbpt2bu",
       "name": "Stawberry-Matcha",
       "emoji": "🍓",
-      "points": 25,
+      "points": 27,
       "games": {
         "sackwerfen": 4,
         "dummi_ziehen": 2,
@@ -302,9 +302,10 @@
         "spinnennetz": 3,
         "dosenwerfen": 4,
         "bogenschiessen": 4,
-        "fussballslalom": 2
+        "fussballslalom": 2,
+        "kaesespiel": 2
       },
-      "ts": 1783518872020
+      "ts": 1783518876981
     },
     {
       "id": "t_jha3xgz",
