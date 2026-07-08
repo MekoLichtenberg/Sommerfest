@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 16:15:02",
+  "updated": "8.7.2026, 16:15:04",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -107,7 +107,7 @@
       "id": "t_k89cz6r",
       "name": "Team Regina",
       "emoji": "🤣",
-      "points": 42,
+      "points": 43,
       "games": {
         "sackwerfen": 5,
         "fussballslalom": 5,
@@ -116,12 +116,12 @@
         "bogenschiessen": 5,
         "dummi_ziehen": 3,
         "heisser_draht": 3,
-        "balancierfeder": 4,
+        "balancierfeder": 5,
         "spinnennetz": 3,
         "tetris": 3,
         "kaesespiel": 5
       },
-      "ts": 1783520102815
+      "ts": 1783520104069
     },
     {
       "id": "t_f29tacd",
