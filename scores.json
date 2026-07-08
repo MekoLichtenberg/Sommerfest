@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:56:27",
+  "updated": "8.7.2026, 15:56:40",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -126,7 +126,7 @@
       "id": "t_f29tacd",
       "name": "Die Holzis",
       "emoji": "🪵",
-      "points": 39,
+      "points": 44,
       "games": {
         "balancierfeder": 5,
         "tetris": 3,
@@ -137,9 +137,10 @@
         "quietscheentchen_shuffle": 4,
         "fussballslalom": 3,
         "kaesespiel": 5,
-        "heisser_draht": 5
+        "heisser_draht": 5,
+        "spinnennetz": 5
       },
-      "ts": 1783518761719
+      "ts": 1783519000452
     },
     {
       "id": "t_5bmoxha",
