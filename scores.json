@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 16:11:56",
+  "updated": "8.7.2026, 16:12:02",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -281,7 +281,7 @@
       "id": "t_vj39rio",
       "name": "Waldebärchen",
       "emoji": "🦜",
-      "points": 32,
+      "points": 37,
       "games": {
         "quietscheentchen_shuffle": 2,
         "sackwerfen": 2,
@@ -291,9 +291,10 @@
         "dummi_ziehen": 5,
         "heisser_draht": 4,
         "kaesespiel": 2,
-        "tetris": 5
+        "tetris": 5,
+        "balancierfeder": 5
       },
-      "ts": 1783519586951
+      "ts": 1783519922858
     },
     {
       "id": "t_pbpt2bu",
