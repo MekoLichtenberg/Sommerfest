@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 14:39:05",
+  "updated": "8.7.2026, 14:39:13",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -35,9 +35,11 @@
       "id": "t_b39el29",
       "name": "Die Hardcores",
       "emoji": "👑",
-      "points": 0,
-      "games": {},
-      "ts": 1783512591787
+      "points": 5,
+      "games": {
+        "dummi_ziehen": 5
+      },
+      "ts": 1783514353933
     },
     {
       "id": "t_r2slyob",
