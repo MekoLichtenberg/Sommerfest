@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 16:09:08",
+  "updated": "8.7.2026, 16:09:09",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -353,7 +353,7 @@
       "id": "t_a5odfcw",
       "name": "Neymar",
       "emoji": "🐆",
-      "points": 31,
+      "points": 34,
       "games": {
         "heisser_draht": 1,
         "dosenwerfen": 4,
@@ -364,9 +364,10 @@
         "fussballslalom": 5,
         "balancierfeder": 5,
         "sackwerfen": 3,
-        "tetris": 3
+        "tetris": 3,
+        "spinnennetz": 3
       },
-      "ts": 1783519453177
+      "ts": 1783519749743
     },
     {
       "id": "t_09i7yrz",
