@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 16:23:34",
+  "updated": "8.7.2026, 16:24:20",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -548,14 +548,15 @@
       "id": "t_twephcb",
       "name": "Ufo",
       "emoji": "🛸",
-      "points": 12,
+      "points": 13,
       "games": {
         "quietscheentchen_shuffle": 3,
         "balancierfeder": 5,
         "kaesespiel": 1,
-        "dummi_ziehen": 3
+        "dummi_ziehen": 3,
+        "bogenschiessen": 1
       },
-      "ts": 1783520338785
+      "ts": 1783520660970
     },
     {
       "id": "t_98gywe7",
