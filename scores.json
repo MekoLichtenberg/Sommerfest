@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:27:21",
+  "updated": "8.7.2026, 15:27:23",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -288,13 +288,13 @@
       "id": "t_jha3xgz",
       "name": "Dembélé",
       "emoji": "🌝",
-      "points": 10,
+      "points": 11,
       "games": {
-        "dosenwerfen": 3,
+        "dosenwerfen": 4,
         "fussballslalom": 4,
         "dummi_ziehen": 3
       },
-      "ts": 1783517241643
+      "ts": 1783517243970
     },
     {
       "id": "t_orkm46z",
