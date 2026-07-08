@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:37:46",
+  "updated": "8.7.2026, 15:37:50",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -26,7 +26,7 @@
       "id": "t_a23hnzh",
       "name": "Sockengang",
       "emoji": "🧦",
-      "points": 0,
+      "points": 31,
       "games": {
         "sackwerfen": 0,
         "spinnennetz": 4,
@@ -35,11 +35,11 @@
         "tetris": 3,
         "balancierfeder": 5,
         "bogenschiessen": 2,
-        "dosenwerfen": 5,
+        "dosenwerfen": 4,
         "quietscheentchen_shuffle": 2,
         "heisser_draht": 4
       },
-      "ts": 1783517578221
+      "ts": 1783517870533
     },
     {
       "id": "t_fyb2ni6",
