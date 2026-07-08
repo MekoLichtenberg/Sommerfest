@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:41:15",
+  "updated": "8.7.2026, 15:41:17",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -158,7 +158,7 @@
       "id": "t_xgg9pqh",
       "name": "Die Drei Pia Olymp Mädchen",
       "emoji": "❤️",
-      "points": 35,
+      "points": 34,
       "games": {
         "bogenschiessen": 4,
         "dummi_ziehen": 2,
@@ -168,11 +168,11 @@
         "tetris": 3,
         "balancierfeder": 5,
         "kaesespiel": 2,
-        "dosenwerfen": 5,
+        "dosenwerfen": 4,
         "heisser_draht": 2,
         "quietscheentchen_shuffle": 2
       },
-      "ts": 1783518075359
+      "ts": 1783518077585
     },
     {
       "id": "t_t7n63cp",
