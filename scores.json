@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:35:27",
+  "updated": "8.7.2026, 15:35:36",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -82,7 +82,7 @@
       "id": "t_r2slyob",
       "name": "Team Ronaldo",
       "emoji": "⚽️",
-      "points": 32,
+      "points": 31,
       "games": {
         "heisser_draht": 2,
         "fussballslalom": 4,
@@ -92,11 +92,11 @@
         "balancierfeder": 5,
         "tetris": 3,
         "bogenschiessen": 4,
-        "dosenwerfen": 4,
+        "dosenwerfen": 3,
         "kaesespiel": 2,
         "spinnennetz": 3
       },
-      "ts": 1783517620264
+      "ts": 1783517736689
     },
     {
       "id": "t_k89cz6r",
