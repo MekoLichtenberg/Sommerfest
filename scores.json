@@ -1,7 +1,7 @@
 {
   "title": "Sommerfest 2026",
   "subtitle": "Scoreboard",
-  "updated": "8.7.2026, 15:22:40",
+  "updated": "8.7.2026, 15:22:44",
   "teams": [
     {
       "id": "t_x73p3zo",
@@ -182,7 +182,7 @@
       "id": "t_popk7sp",
       "name": "Carzudel",
       "emoji": "👽",
-      "points": 0,
+      "points": 27,
       "games": {
         "quietscheentchen_shuffle": 3,
         "balancierfeder": 3,
@@ -191,9 +191,10 @@
         "dosenwerfen": 3,
         "fussballslalom": 4,
         "dummi_ziehen": 2,
-        "sackwerfen": 4
+        "sackwerfen": 4,
+        "bogenschiessen": 2
       },
-      "ts": 1783516809320
+      "ts": 1783516964813
     },
     {
       "id": "t_iqqg66u",
